@@ -5,6 +5,7 @@ import { TeamsButtons } from "./TeamsButtons";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Typography } from "@mui/material";
 
+//theme colors
 const theme = createTheme({
   palette: {
     primary: {
@@ -17,27 +18,13 @@ const theme = createTheme({
 })
 
 function App() {
-  const [teams, setTeams] = useState();
   const [employees, setEmployees] = useState();
-
-  const api_key = import.meta.env.VITE_API_KEY;
   
   const config = {
     headers: {
-      apikey: api_key,
+      apikey: import.meta.env.VITE_API_KEY,
     },
   };
-
-  useEffect(() => {
-    axios
-      .get(
-        `https://nktebdhspzvpwguqcksn.supabase.co/rest/v1/teams?select=*`,
-        config
-      )
-      .then((response) => {
-        setTeams(response.data);
-      });
-  }, []);
 
   useEffect(() => {
     axios
