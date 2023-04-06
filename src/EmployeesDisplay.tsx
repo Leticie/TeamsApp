@@ -1,13 +1,14 @@
 import axios, { AxiosResponse } from "axios";
 import { useState, useEffect } from "react";
 import { EmployeesRowT } from "./types/apiTypes";
-import { Card, CardContent, Grid, Typography } from "@mui/material";
+import { Button, Card, CardContent, Grid, Typography } from "@mui/material";
 
 interface EmployeesDisplayI {
   teamSelected: string;
+  setTeam: (value: string) => void
 }
 
-export const EmployeesDisplay = ({ teamSelected }: EmployeesDisplayI) => {
+export const EmployeesDisplay = ({ teamSelected, setTeam }: EmployeesDisplayI) => {
   const [employees, setEmployees] = useState<EmployeesRowT>();
 
   const config = {
@@ -50,7 +51,7 @@ export const EmployeesDisplay = ({ teamSelected }: EmployeesDisplayI) => {
                       <Typography>
                         {`${employee.name} ${employee.surname}`}
                       </Typography>
-                      <Typography>{`${employee.position}`}</Typography>
+                      <Typography>{`${employee.position}`.toUpperCase()}</Typography>
                     </CardContent>
                   </Card>
                 </Grid>
@@ -58,6 +59,9 @@ export const EmployeesDisplay = ({ teamSelected }: EmployeesDisplayI) => {
             }
           })}
       </Grid>
+      <Button onClick={() => setTeam("")}>
+        Back
+      </Button>
     </>
   );
 };

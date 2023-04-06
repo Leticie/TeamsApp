@@ -22,10 +22,11 @@ function App() {
   const handleTeamSelection = (value:string) => {
     setTeam(value)
   }
+  console.log(teamSelected)
 
   return (
     <ThemeProvider theme={theme}>
-      {teamSelected ? <EmployeesDisplay teamSelected={teamSelected}/> : <TeamsButtons setTeam={handleTeamSelection}/>}
+      {teamSelected ? <EmployeesDisplay teamSelected={teamSelected} setTeam={handleTeamSelection}/> : <TeamsButtons setTeam={handleTeamSelection}/>}
     </ThemeProvider>
   );
 }
