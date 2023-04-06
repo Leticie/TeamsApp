@@ -4,12 +4,13 @@ import "./App.css";
 import { TeamsButtons } from "./TeamsButtons";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Typography } from "@mui/material";
+import { EmployeesDisplay } from "./EmployeesDisplay";
 
 //theme colors
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#02D076'
+      main: '#02D076' //green
     },
     secondary: {
       main: '#10BFFC'
@@ -18,24 +19,7 @@ const theme = createTheme({
 })
 
 function App() {
-  const [employees, setEmployees] = useState();
-  
-  const config = {
-    headers: {
-      apikey: import.meta.env.VITE_API_KEY,
-    },
-  };
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://nktebdhspzvpwguqcksn.supabase.co/rest/v1/employees?select=*`,
-        config
-      )
-      .then((response) => {
-        setEmployees(response.data);
-      });
-  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -43,6 +27,7 @@ function App() {
         Teams
       </Typography>
       <TeamsButtons />
+      <EmployeesDisplay />
     </ThemeProvider>
   );
 }

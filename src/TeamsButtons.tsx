@@ -5,7 +5,7 @@ import { TeamsRowT } from "./types/apiTypes";
 
 export const TeamsButtons = () => {
     const [teams, setTeams] = useState<TeamsRowT>();
-    
+  
     const config = {
       headers: {
         apikey: import.meta.env.VITE_API_KEY,
@@ -22,9 +22,6 @@ export const TeamsButtons = () => {
           setTeams(response.data);
         });
     }, []);
-
-    console.log(teams)
-  
 
     return (
         <Grid container rowSpacing={{ xs: 1, sm: 2, md: 3 }} columnSpacing={1} justifyContent="center">
