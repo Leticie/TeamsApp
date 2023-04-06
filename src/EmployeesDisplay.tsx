@@ -5,10 +5,26 @@ import { Button, Card, CardContent, Grid, Typography } from "@mui/material";
 
 interface EmployeesDisplayI {
   teamSelected: string;
-  setTeam: (value: string) => void
+  setTeam: (value: string) => void;
 }
 
-export const EmployeesDisplay = ({ teamSelected, setTeam }: EmployeesDisplayI) => {
+interface CardEmployeeI {
+  employee: {
+    createdAt: string;
+    endDate: string | null;
+    id: string;
+    name: string;
+    position: string;
+    startDate: string | null;
+    surname: string;
+    team: string | null;
+  };
+}
+
+export const EmployeesDisplay = ({
+  teamSelected,
+  setTeam,
+}: EmployeesDisplayI) => {
   const [employees, setEmployees] = useState<EmployeesRowT>();
 
   const config = {
@@ -46,22 +62,38 @@ export const EmployeesDisplay = ({ teamSelected, setTeam }: EmployeesDisplayI) =
             if (teamSelected === employee.team) {
               return (
                 <Grid item key={employee.id}>
-                  <Card sx={{ padding: 5 }}>
-                    <CardContent>
-                      <Typography>
-                        {`${employee.name} ${employee.surname}`}
-                      </Typography>
-                      <Typography>{`${employee.position}`.toUpperCase()}</Typography>
-                    </CardContent>
-                  </Card>
+                  <CardEmployee employee={employee}></CardEmployee>
                 </Grid>
               );
             }
           })}
       </Grid>
-      <Button onClick={() => setTeam("")}>
-        Back
-      </Button>
+      <Button onClick={() => setTeam("")}>Back</Button>
     </>
   );
 };
+
+
+
+//checks if employee has an end date and if so, changes color
+const CardEmployee = ({ employee }: CardEmployeeI) => {
+  if (employee.endDate) {
+    return (
+      <Card sx={{ padding: 5, bgcolor: "primary.light" }}>
+        <CardEmployeeContent employee={employee}></CardEmployeeContent>
+      </Card>
+    );
+  }
+  return (
+    <Card sx={{ padding: 5, bgcolor: "primary.dark" }}>
+      <CardEmployeeContent employee={employee}></CardEmployeeContent>
+    </Card>
+  );
+};
+
+const CardEmployeeContent = ({ employee }: CardEmployeeI) => (
+  <CardContent>
+    <Typography>{`${employee.name} ${employee.surname}`}</Typography>
+    <Typography>{`${employee.position}`.toUpperCase()}</Typography>
+  </CardContent>
+);
