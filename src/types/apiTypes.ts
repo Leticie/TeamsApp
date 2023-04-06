@@ -15,6 +15,7 @@ export interface Database {
           endDate: string | null;
           id: string;
           name: string;
+          position: string; //missing in API docs https://github.com/Naomak/alveno-job/blob/main/types/supabase.ts
           startDate: string | null;
           surname: string;
           team: string | null;
