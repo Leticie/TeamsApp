@@ -1,4 +1,4 @@
-import { Button, ButtonGroup } from "@mui/material"
+import { Button, Grid } from "@mui/material"
 import axios, { AxiosResponse } from "axios";
 import { useState, useEffect } from "react";
 import { TeamsRowT } from "./types/apiTypes";
@@ -27,11 +27,13 @@ export const TeamsButtons = () => {
   
 
     return (
-        <ButtonGroup variant="contained">
-            {teams&&teams.map(team => 
-                <Button key={team.name}>{team.name}</Button>)}
-        </ButtonGroup>
-
+        <Grid container rowSpacing={{ xs: 1, sm: 2, md: 3 }} columnSpacing={1} justifyContent="center">
+            {teams&&teams.map(team =>
+                <Grid item key={team.name}> 
+                    <Button style={{ fontSize: '50px' }} size="large" variant="contained">{team.name}</Button>
+                </Grid>
+            )}
+        </Grid>
     )
     
 }
