@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import "./App.css";
 import { TeamsButtons } from "./TeamsButtons";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Typography } from "@mui/material";
 import { EmployeesDisplay } from "./EmployeesDisplay";
 
 //theme colors
@@ -19,18 +17,15 @@ const theme = createTheme({
 });
 
 function App() {
-  const [categorySelected, setCategorySelected] = useState<boolean>(false);
+  const [teamSelected, setTeam] = useState<string>("");
 
-  const handleCategorySelected = (value:boolean) => {
-    setCategorySelected(value)
+  const handleTeamSelection = (value:string) => {
+    setTeam(value)
   }
 
   return (
     <ThemeProvider theme={theme}>
-      <Typography variant="h1" component="h1">
-        Teams
-      </Typography>
-      {categorySelected ? <EmployeesDisplay /> : <TeamsButtons categorySelected={handleCategorySelected}/>}
+      {teamSelected ? <EmployeesDisplay teamSelected={teamSelected}/> : <TeamsButtons setTeam={handleTeamSelection}/>}
     </ThemeProvider>
   );
 }
