@@ -1,9 +1,9 @@
 import axios, { AxiosResponse } from "axios";
 import { useState, useEffect } from "react";
-import { TeamsRowT } from "./types/apiTypes";
+import { EmployeesRowT } from "./types/apiTypes";
 
 export const EmployeesDisplay = () => {
-    const [employees, setEmployees] = useState();
+    const [employees, setEmployees] = useState<EmployeesRowT>();
     
     const config = {
       headers: {
@@ -17,7 +17,7 @@ export const EmployeesDisplay = () => {
           `https://nktebdhspzvpwguqcksn.supabase.co/rest/v1/employees?select=*`,
           config
         )
-        .then((response) => {
+        .then((response:AxiosResponse<EmployeesRowT>) => {
           setEmployees(response.data);
         });
     }, []);

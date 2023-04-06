@@ -3,7 +3,11 @@ import axios, { AxiosResponse } from "axios";
 import { useState, useEffect } from "react";
 import { TeamsRowT } from "./types/apiTypes";
 
-export const TeamsButtons = () => {
+interface TeamsButtonsI {
+    categorySelected: (value: boolean) => void
+}
+
+export const TeamsButtons = ({categorySelected}:TeamsButtonsI) => {
     const [teams, setTeams] = useState<TeamsRowT>();
   
     const config = {
@@ -27,7 +31,7 @@ export const TeamsButtons = () => {
         <Grid container rowSpacing={{ xs: 1, sm: 2, md: 3 }} columnSpacing={1} justifyContent="center">
             {teams&&teams.map(team =>
                 <Grid item key={team.name}> 
-                    <Button style={{ fontSize: '50px' }} size="large" variant="contained">{team.name}</Button>
+                    <Button style={{ fontSize: '50px' }} size="large" variant="contained" onClick={() => categorySelected(true)}>{team.name}</Button>
                 </Grid>
             )}
         </Grid>

@@ -75,3 +75,4 @@ export interface Database {
 }
 
 export type TeamsRowT = Array<Database["public"]["Tables"]["teams"]["Row"]>;
+export type EmployeesRowT = Array<Database["public"]["Tables"]["employees"]["Row"]>;

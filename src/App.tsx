@@ -10,24 +10,27 @@ import { EmployeesDisplay } from "./EmployeesDisplay";
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#02D076' //green
+      main: "#02D076", //green
     },
     secondary: {
-      main: '#10BFFC'
-    }
-  }
-})
+      main: "#10BFFC",
+    },
+  },
+});
 
 function App() {
+  const [categorySelected, setCategorySelected] = useState<boolean>(false);
 
+  const handleCategorySelected = (value:boolean) => {
+    setCategorySelected(value)
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <Typography variant="h1" component="h1">
         Teams
       </Typography>
-      <TeamsButtons />
-      <EmployeesDisplay />
+      {categorySelected ? <EmployeesDisplay /> : <TeamsButtons categorySelected={handleCategorySelected}/>}
     </ThemeProvider>
   );
 }
