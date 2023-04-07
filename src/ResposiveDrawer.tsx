@@ -15,50 +15,51 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import axios, { AxiosResponse } from 'axios';
+import { TeamsRowT } from './types/apiTypes';
+import { useState, useEffect } from "react";
 
 const drawerWidth = 240;
 
-interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window?: () => Window;
-}
-
-export default function ResponsiveDrawer(props: Props) {
+export default function ResponsiveDrawer(props: any) {
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [teamId, setTeamId] = useState<string>();
+  const [teams, setTeams] = useState<TeamsRowT>();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const config = {
+    headers: {
+      apikey: import.meta.env.VITE_API_KEY,
+    },
+  };
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://nktebdhspzvpwguqcksn.supabase.co/rest/v1/teams?select=*`,
+        config
+      )
+      .then((response: AxiosResponse<TeamsRowT>) => {
+        setTeams(response.data);
+      });
+  }, []);
+
+  console.log(teams);
 
   const drawer = (
     <div>
       <Toolbar />
       <Divider />
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+      {teams &&
+          teams.map((team) => (
+          <ListItem key={team.id} disablePadding>
+            <ListItemButton onClick={() => setTeamId(`${team.id}`)}>
+              <ListItemText primary={team.name} />
             </ListItemButton>
           </ListItem>
         ))}
