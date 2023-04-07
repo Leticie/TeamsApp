@@ -1,17 +1,19 @@
-import { AppBar, Box, Container, Toolbar } from "@mui/material";
+import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import { ReactComponent as Logo } from "./assets/alveno-logo.svg";
+import GroupsIcon from '@mui/icons-material/Groups';
 
 export const Header = () => {
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}></Box>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static" color="secondary">
+        <Toolbar>
           <Logo />
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}></Box>
-          <Box sx={{ flexGrow: 0 }}></Box>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Teams
+          </Typography>
+          <GroupsIcon color="primary"></GroupsIcon>
         </Toolbar>
-      </Container>
-    </AppBar>
+      </AppBar>
+    </Box>
   );
 };
