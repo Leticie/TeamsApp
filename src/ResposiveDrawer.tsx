@@ -65,16 +65,18 @@ export default function ResponsiveDrawer() {
     },
   });
 
+  
+
   const drawerButtons = (
     <div>
-      <Toolbar>
+      <Toolbar sx={{height: "100px"}}>
         <Logo />
       </Toolbar>
       <Divider />
       <ButtonGroup
         orientation="vertical"
         variant="contained"
-        sx={{ width: drawerWidth }}
+        sx={{ width: "239px"}} //1px smaller than drawer width
       >
         {teams &&
           teams.map((team) => (
@@ -99,6 +101,7 @@ export default function ResponsiveDrawer() {
           sx={{
             width: { sm: `calc(100% - ${drawerWidth}px)` },
             ml: { sm: `${drawerWidth}px` },
+            minHeight: "100px"
           }}
         >
           <Toolbar>
@@ -119,7 +122,7 @@ export default function ResponsiveDrawer() {
         <Box
           component="nav"
           sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-          aria-label="mailbox folders"
+          aria-label="teams"
         >
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
           <Drawer
