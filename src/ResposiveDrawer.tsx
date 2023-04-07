@@ -18,6 +18,8 @@ import Typography from '@mui/material/Typography';
 import axios, { AxiosResponse } from 'axios';
 import { TeamsRowT } from './types/apiTypes';
 import { useState, useEffect } from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ButtonGroup, Button } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -50,26 +52,38 @@ export default function ResponsiveDrawer(props: any) {
 
   console.log(teams);
 
+  const theme = createTheme({
+    palette: {
+      mode: "dark",
+      primary: {
+        main: "#02D076", //green
+      },
+      secondary: {
+        main: "#10BFFC", //blue
+      },
+    },
+  });
+
   const drawer = (
     <div>
       <Toolbar />
       <Divider />
-      <List>
+      <ButtonGroup orientation="vertical" size="large" variant="contained" style={{ fontSize: "50px", width:drawerWidth }}>
       {teams &&
           teams.map((team) => (
-          <ListItem key={team.id} disablePadding>
-            <ListItemButton onClick={() => setTeamId(`${team.id}`)}>
-              <ListItemText primary={team.name} />
-            </ListItemButton>
-          </ListItem>
+
+            <Button key={team.id} onClick={() => setTeamId(`${team.id}`)}>{team.name}</Button>
+
+
         ))}
-      </List>
+      </ButtonGroup>
     </div>
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
+    <ThemeProvider theme={theme}>
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar
@@ -90,7 +104,7 @@ export default function ResponsiveDrawer(props: any) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+            Teams
           </Typography>
         </Toolbar>
       </AppBar>
@@ -120,6 +134,7 @@ export default function ResponsiveDrawer(props: any) {
           sx={{
             display: { xs: 'none', sm: 'block' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+
           }}
           open
         >
@@ -160,5 +175,6 @@ export default function ResponsiveDrawer(props: any) {
         </Typography>
       </Box>
     </Box>
+    </ThemeProvider>
   );
 }
