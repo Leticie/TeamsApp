@@ -54,7 +54,7 @@ export const EmployeesDisplay = ({
       <Grid
         container
         rowSpacing={{ xs: 1, sm: 2, md: 3 }}
-        columnSpacing={1}
+        columnSpacing={3}
         justifyContent="center"
       >
         {employees &&

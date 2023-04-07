@@ -8,6 +8,7 @@ import { Header } from "./Header";
 //theme colors
 const theme = createTheme({
   palette: {
+    mode: "dark",
     primary: {
       main: "#02D076", //green
     },
@@ -20,16 +21,24 @@ const theme = createTheme({
 function App() {
   const [teamSelected, setTeam] = useState<string>("");
 
-  const handleTeamSelection = (value:string) => {
-    setTeam(value)
-  }
+  const handleTeamSelection = (value: string) => {
+    setTeam(value);
+  };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Header/>
-      {teamSelected ? <EmployeesDisplay teamSelected={teamSelected} setTeam={handleTeamSelection}/> : <TeamsButtons setTeam={handleTeamSelection}/>}
-      
-    </ThemeProvider>
+    <>
+      <ThemeProvider theme={theme}>
+        <Header />
+        {teamSelected ? (
+          <EmployeesDisplay
+            teamSelected={teamSelected}
+            setTeam={handleTeamSelection}
+          />
+        ) : (
+          <TeamsButtons setTeam={handleTeamSelection} />
+        )}
+      </ThemeProvider>
+    </>
   );
 }
 
