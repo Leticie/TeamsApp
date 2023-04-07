@@ -19,9 +19,10 @@ import axios, { AxiosResponse } from "axios";
 import { TeamsRowT } from "./types/apiTypes";
 import { useState, useEffect } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { ButtonGroup, Button } from "@mui/material";
+import { ButtonGroup, Button, Grid } from "@mui/material";
 import { EmployeesDisplay } from "./EmployeesDisplay";
 import { ReactComponent as Logo } from "./assets/alveno-logo.svg";
+import "./ResponsiveDrawer.css"
 
 const drawerWidth = 240;
 
@@ -104,17 +105,18 @@ export default function ResponsiveDrawer() {
             minHeight: "100px"
           }}
         >
-          <Toolbar>
+          <Toolbar sx={{ display: "flex", justifyContent:"center"}}>
             <IconButton
               color="inherit"
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: "none" } }}
+              sx={{ display: { sm: "none" }}}
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
+
+            <Typography variant="h2" component="h1" noWrap sx={{marginLeft: "auto", marginRight:"auto"}}>
               Teams
             </Typography>
           </Toolbar>
