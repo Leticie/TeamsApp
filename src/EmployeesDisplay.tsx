@@ -4,7 +4,7 @@ import { EmployeesRowT } from "./types/apiTypes";
 import { Button, Card, CardContent, Grid, Typography } from "@mui/material";
 
 interface EmployeesDisplayI {
-  teamSelected: string;
+  teamSelected: string | undefined;
   setTeam: (value: string) => void;
 }
 
