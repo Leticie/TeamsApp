@@ -4,6 +4,7 @@ import { TeamsButtons } from "./TeamsButtons";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { EmployeesDisplay } from "./EmployeesDisplay";
 import { Header } from "./Header";
+import ResponsiveDrawer from "./ResposiveDrawer";
 
 //theme colors
 const theme = createTheme({
@@ -27,8 +28,17 @@ function App() {
 
   return (
     <>
+      <ResponsiveDrawer/>
+    </>
+  )
+}
+
+  /*
+  return (
+    <>
+    
       <ThemeProvider theme={theme}>
-        <Header />
+      <Header/>
         {teamSelected ? (
           <EmployeesDisplay
             teamSelected={teamSelected}
@@ -41,5 +51,6 @@ function App() {
     </>
   );
 }
+*/
 
 export default App;
