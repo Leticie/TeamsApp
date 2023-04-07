@@ -21,7 +21,7 @@ import { useState, useEffect } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ButtonGroup, Button } from "@mui/material";
 import { EmployeesDisplay } from "./EmployeesDisplay";
-
+import { ReactComponent as Logo } from "./assets/alveno-logo.svg";
 
 const drawerWidth = 240;
 
@@ -67,17 +67,22 @@ export default function ResponsiveDrawer() {
 
   const drawerButtons = (
     <div>
-      <Toolbar />
+      <Toolbar>
+        <Logo />
+      </Toolbar>
       <Divider />
       <ButtonGroup
         orientation="vertical"
-        size="large"
         variant="contained"
-        style={{ fontSize: "50px", width: drawerWidth }}
+        sx={{ width: drawerWidth }}
       >
         {teams &&
           teams.map((team) => (
-            <Button key={team.id} onClick={() => setTeamId(`${team.id}`)}>
+            <Button
+              key={team.id}
+              sx={{ fontSize: "20px", height: "70px" }}
+              onClick={() => setTeamId(`${team.id}`)}
+            >
               {team.name}
             </Button>
           ))}
@@ -157,7 +162,7 @@ export default function ResponsiveDrawer() {
           }}
         >
           <Toolbar />
-          <EmployeesDisplay setTeam={setTeamId} teamSelected={teamId}/>
+          <EmployeesDisplay setTeam={setTeamId} teamSelected={teamId} />
         </Box>
       </Box>
     </ThemeProvider>
