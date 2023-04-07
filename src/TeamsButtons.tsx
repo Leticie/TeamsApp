@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Grid} from "@mui/material";
 import axios, { AxiosResponse } from "axios";
 import { useState, useEffect } from "react";
 import { TeamsRowT } from "./types/apiTypes";
@@ -31,9 +31,6 @@ export const TeamsButtons = ({ setTeam }: TeamsButtonsI) => {
 
   return (
     <>
-      <Typography variant="h1" component="h1">
-        Teams
-      </Typography>
       <Grid
         container
         rowSpacing={{ xs: 1, sm: 2, md: 3 }}
