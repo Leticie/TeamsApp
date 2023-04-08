@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./App.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { EmployeesDisplay } from "./EmployeesDisplay";
 import ResponsiveDrawer from "./ResposiveDrawer";
 
 //theme colors
