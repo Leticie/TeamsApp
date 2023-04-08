@@ -11,9 +11,10 @@ interface TeamsDrawerI {
     handleDrawerToggle: () => void
     setTeamId: (value: string) => void
     setTeamName: (value: string) => void
+    teamName: string
 }
 
-export const TeamsDrawer = ({drawerWidth, mobileOpen, handleDrawerToggle, setTeamId, setTeamName}: TeamsDrawerI) => {
+export const TeamsDrawer = ({drawerWidth, mobileOpen, teamName, handleDrawerToggle, setTeamId, setTeamName}: TeamsDrawerI) => {
 
     const drawerButtons = (
         <div>
@@ -21,7 +22,7 @@ export const TeamsDrawer = ({drawerWidth, mobileOpen, handleDrawerToggle, setTea
             <Logo />
           </Toolbar>
           <Divider />
-          <TeamsButtons setTeamId={setTeamId} setTeamName={setTeamName}/>
+          <TeamsButtons setTeamId={setTeamId} setTeamName={setTeamName} teamName={teamName}/>
         </div>
       );
 

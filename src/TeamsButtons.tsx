@@ -6,9 +6,10 @@ import { useState, useEffect } from "react";
 interface TeamsButtonsI {
     setTeamId: (value: string) => void
     setTeamName: (value: string) => void
+    teamName: string
 }    
 
-export const TeamsButtons = ({setTeamId, setTeamName}:TeamsButtonsI) => {
+export const TeamsButtons = ({teamName, setTeamId, setTeamName}:TeamsButtonsI) => {
     const [teams, setTeams] = useState<TeamsRowT>();
 
     const config = {
@@ -37,12 +38,13 @@ export const TeamsButtons = ({setTeamId, setTeamName}:TeamsButtonsI) => {
         orientation="vertical"
         variant="contained"
         sx={{ width: "239px" }} //1px smaller than drawer width
+        color="secondary"
       >
         {teams &&
           teams.map((team) => (
             <Button
               key={team.id}
-              sx={{ fontSize: "20px", height: "70px", justifyContent: "left" }}
+              sx={{ fontSize: "20px", height: "70px", justifyContent: "left", backgroundColor: teamName === team.name? "secondary.dark":"secondary.light"}}
               onClick={() => {
                 setTeamId(`${team.id}`);
                 setTeamName(`${team.name}`);

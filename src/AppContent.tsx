@@ -10,8 +10,8 @@ const drawerWidth = 240;
 
 export default function AppContent() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [teamId, setTeamId] = useState<string>();
-  const [teamName, setTeamName] = useState<string>();
+  const [teamId, setTeamId] = useState<string>("");
+  const [teamName, setTeamName] = useState<string>("");
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -42,6 +42,7 @@ export default function AppContent() {
           mobileOpen={mobileOpen}
           setTeamId={handleTeamId}
           setTeamName={handleTeamName}
+          teamName={teamName}
         />
       </Box>
       <Box
