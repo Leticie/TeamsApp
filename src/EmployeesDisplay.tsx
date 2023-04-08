@@ -21,6 +21,10 @@ interface CardEmployeeI {
   };
 }
 
+interface SelectedTeamNameI {
+  teamName:string
+}
+
 export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
   const [employees, setEmployees] = useState<EmployeesRowT>();
 
@@ -43,16 +47,33 @@ export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
 
   console.log(employees);
 
-  return (
-    <>
-      <Toolbar />
+  const DefaultMessage = () => {
+    return (
+      <>
+      <Typography variant="h3" component="h3" sx={{ textAlign:"center", marginTop: "150px", width:"100%" }}>Welcome to Teams</Typography>
+      <Typography variant="overline" component="h4" sx={{ textAlign:"center", width:"100%" }}>Please select a team</Typography>
+      </>
+      )
+  }
+
+  const SelectedTeamName = ({teamName}:SelectedTeamNameI) => {
+    return (
       <Typography
         variant="h4"
         component="h3"
         sx={{ textAlign:"center", marginTop: "40px", marginBottom:"20px", width:"100%" }}
-      >
-        {teamName}
+      >{teamName}
       </Typography>
+    )
+  }
+
+  return (
+    <>
+      <Toolbar />
+      {teamName?
+      <SelectedTeamName teamName={teamName} />
+      : <DefaultMessage />
+      }
       <Grid
         container
         spacing={2}
