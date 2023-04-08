@@ -1,7 +1,6 @@
-import { useState } from "react";
 import "./App.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import ResponsiveDrawer from "./AppContent";
+import AppContent from "./AppContent";
 
 //theme colors
 const theme = createTheme({
@@ -18,9 +17,9 @@ const theme = createTheme({
 
 function App() {
   return (
-      <ThemeProvider theme={theme}>
-        <ResponsiveDrawer />
-      </ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 

@@ -31,6 +31,8 @@ export const TeamsButtons = ({setTeamId, setTeamName}:TeamsButtonsI) => {
       console.log(teams);
     
     return (
+        <>
+        
         <ButtonGroup
         orientation="vertical"
         variant="contained"
@@ -50,5 +52,6 @@ export const TeamsButtons = ({setTeamId, setTeamName}:TeamsButtonsI) => {
             </Button>
           ))}
       </ButtonGroup>
+      </>
     )
 }

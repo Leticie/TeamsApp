@@ -1,11 +1,11 @@
 import axios, { AxiosResponse } from "axios";
 import { useState, useEffect } from "react";
 import { EmployeesRowT } from "./types/apiTypes";
-import { Button, Card, CardContent, Grid, Typography } from "@mui/material";
+import { Card, CardContent, Grid, Toolbar, Typography } from "@mui/material";
 
 interface EmployeesDisplayI {
   teamId: string | undefined;
-  teamName: string | undefined
+  teamName: string | undefined;
 }
 
 interface CardEmployeeI {
@@ -21,10 +21,7 @@ interface CardEmployeeI {
   };
 }
 
-export const EmployeesDisplay = ({
-  teamId,
-  teamName
-}: EmployeesDisplayI) => {
+export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
   const [employees, setEmployees] = useState<EmployeesRowT>();
 
   const config = {
@@ -48,13 +45,19 @@ export const EmployeesDisplay = ({
 
   return (
     <>
-      <Typography variant="h4" component="h3" noWrap sx={{ display: "flex", justifyContent:"center", margin: "20px"}}>
+      <Toolbar />
+      <Typography
+        variant="h4"
+        component="h3"
+        noWrap
+        sx={{ display: "flex", justifyContent: "center", margin: "20px" }}
+      >
         {teamName}
       </Typography>
       <Grid
         container
         spacing={2}
-        sx={{ display: "flex", justifyContent:"center"}}
+        sx={{ display: "flex", justifyContent: "center" }}
       >
         {employees &&
           employees.map((employee) => {
@@ -71,13 +74,11 @@ export const EmployeesDisplay = ({
   );
 };
 
-
-
 //checks if employee has an end date and if so, changes color
 const CardEmployee = ({ employee }: CardEmployeeI) => {
   if (employee.endDate) {
     return (
-      <Card sx={{ padding: 5, bgcolor: "primary.light" }}>
+      <Card sx={{ padding: 5, bgcolor: "primary.light"}}>
         <CardEmployeeContent employee={employee}></CardEmployeeContent>
       </Card>
     );
@@ -91,7 +92,7 @@ const CardEmployee = ({ employee }: CardEmployeeI) => {
 
 const CardEmployeeContent = ({ employee }: CardEmployeeI) => (
   <CardContent>
-    <Typography>{`${employee.name} ${employee.surname}`}</Typography>
-    <Typography>{`${employee.position}`.toUpperCase()}</Typography>
+    <Typography variant="h5" component="div" textAlign="center">{`${employee.name} ${employee.surname}`}</Typography>
+    <Typography variant="h6" component="div" textAlign="center">{`${employee.position}`.toUpperCase()}</Typography>
   </CardContent>
 );

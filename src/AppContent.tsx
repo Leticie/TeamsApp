@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import Toolbar from "@mui/material/Toolbar";
+
 import { useState } from "react";
 import { EmployeesDisplay } from "./EmployeesDisplay";
 import { TeamsDrawer } from "./TeamsDrawer";
@@ -28,7 +27,6 @@ export default function AppContent() {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <CssBaseline />
       <Header
         drawerWidth={drawerWidth}
         handleDrawerToggle={handleDrawerToggle}
@@ -54,7 +52,6 @@ export default function AppContent() {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
-        <Toolbar />
         <EmployeesDisplay teamName={teamName} teamId={teamId} />
       </Box>
     </Box>
