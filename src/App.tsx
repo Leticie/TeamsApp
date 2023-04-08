@@ -1,9 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import { TeamsButtons } from "./TeamsButtons";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { EmployeesDisplay } from "./EmployeesDisplay";
-import { Header } from "./Header";
 import ResponsiveDrawer from "./ResposiveDrawer";
 
 //theme colors
@@ -33,24 +31,5 @@ function App() {
   )
 }
 
-  /*
-  return (
-    <>
-    
-      <ThemeProvider theme={theme}>
-      <Header/>
-        {teamSelected ? (
-          <EmployeesDisplay
-            teamSelected={teamSelected}
-            setTeam={handleTeamSelection}
-          />
-        ) : (
-          <TeamsButtons setTeam={handleTeamSelection} />
-        )}
-      </ThemeProvider>
-    </>
-  );
-}
-*/
 
 export default App;
