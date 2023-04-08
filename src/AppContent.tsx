@@ -45,11 +45,10 @@ export default function AppContent() {
         />
       </Box>
       <Box
-        component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          padding: 3,
+          width: `calc(100% - ${drawerWidth}px)`,
         }}
       >
         <EmployeesDisplay teamName={teamName} teamId={teamId} />

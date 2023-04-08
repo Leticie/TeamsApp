@@ -49,8 +49,7 @@ export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
       <Typography
         variant="h4"
         component="h3"
-        noWrap
-        sx={{ display: "flex", justifyContent: "center", margin: "20px" }}
+        sx={{ textAlign:"center", marginTop: "40px", marginBottom:"20px", width:"100%" }}
       >
         {teamName}
       </Typography>
@@ -78,13 +77,13 @@ export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
 const CardEmployee = ({ employee }: CardEmployeeI) => {
   if (employee.endDate) {
     return (
-      <Card sx={{ padding: 5, bgcolor: "primary.light"}}>
+      <Card sx={{ padding: 4, bgcolor: "primary.light", minWidth:"200px", minHeigth:"200px"}}>
         <CardEmployeeContent employee={employee}></CardEmployeeContent>
       </Card>
     );
   }
   return (
-    <Card sx={{ padding: 5, bgcolor: "primary.dark" }}>
+    <Card sx={{ padding: 4, bgcolor: "primary.dark", minWidth:"200px", minHeigth:"200px"}}>
       <CardEmployeeContent employee={employee}></CardEmployeeContent>
     </Card>
   );
