@@ -42,11 +42,12 @@ export const TeamsButtons = ({setTeamId, setTeamName}:TeamsButtonsI) => {
           teams.map((team) => (
             <Button
               key={team.id}
-              sx={{ fontSize: "20px", height: "70px" }}
+              sx={{ fontSize: "20px", height: "70px", justifyContent: "left" }}
               onClick={() => {
                 setTeamId(`${team.id}`);
                 setTeamName(`${team.name}`);
               }}
+              
             >
               {team.name}
             </Button>
