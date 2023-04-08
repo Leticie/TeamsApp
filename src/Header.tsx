@@ -1,5 +1,6 @@
 import { AppBar, Toolbar, IconButton, Typography } from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu";
+import WorkspacesIcon from '@mui/icons-material/Workspaces';
 
 interface HeaderI {
     drawerWidth: number
@@ -31,15 +32,16 @@ export const Header = ({drawerWidth, handleDrawerToggle}:HeaderI) => {
             <Typography
               variant="h2"
               component="h1"
-              noWrap
+
               sx={{
                 marginLeft: "auto",
                 marginRight: "auto",
-                paddingTop: "10px",
+                marginTop: "10px",
               }}
             >
               Teams
             </Typography>
+            <WorkspacesIcon color="secondary" sx={{marginTop: "20px", marginLeft: "0px"}}/>
           </Toolbar>
         </AppBar>
         </>
