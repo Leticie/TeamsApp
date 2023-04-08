@@ -5,13 +5,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -19,16 +12,16 @@ import axios, { AxiosResponse } from "axios";
 import { TeamsRowT } from "./types/apiTypes";
 import { useState, useEffect } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { ButtonGroup, Button, Grid } from "@mui/material";
+import { ButtonGroup, Button } from "@mui/material";
 import { EmployeesDisplay } from "./EmployeesDisplay";
 import { ReactComponent as Logo } from "./assets/alveno-logo.svg";
-import "./ResponsiveDrawer.css"
 
 const drawerWidth = 240;
 
 export default function ResponsiveDrawer() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [teamId, setTeamId] = useState<string>();
+  const [teamName, setTeamName] = useState<string>();
   const [teams, setTeams] = useState<TeamsRowT>();
 
   const handleDrawerToggle = () => {
@@ -66,25 +59,26 @@ export default function ResponsiveDrawer() {
     },
   });
 
-  
-
   const drawerButtons = (
     <div>
-      <Toolbar sx={{height: "100px"}}>
+      <Toolbar sx={{ height: "100px" }}>
         <Logo />
       </Toolbar>
       <Divider />
       <ButtonGroup
         orientation="vertical"
         variant="contained"
-        sx={{ width: "239px"}} //1px smaller than drawer width
+        sx={{ width: "239px" }} //1px smaller than drawer width
       >
         {teams &&
           teams.map((team) => (
             <Button
               key={team.id}
               sx={{ fontSize: "20px", height: "70px" }}
-              onClick={() => setTeamId(`${team.id}`)}
+              onClick={() => {
+                setTeamId(`${team.id}`);
+                setTeamName(`${team.name}`);
+              }}
             >
               {team.name}
             </Button>
@@ -102,21 +96,30 @@ export default function ResponsiveDrawer() {
           sx={{
             width: { sm: `calc(100% - ${drawerWidth}px)` },
             ml: { sm: `${drawerWidth}px` },
-            minHeight: "100px"
+            minHeight: "100px",
           }}
         >
-          <Toolbar sx={{ display: "flex", justifyContent:"center"}}>
+          <Toolbar sx={{ display: "flex", justifyContent: "center" }}>
             <IconButton
               color="inherit"
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              sx={{ display: { sm: "none" }}}
+              sx={{ display: { sm: "none" } }}
             >
               <MenuIcon />
             </IconButton>
 
-            <Typography variant="h2" component="h1" noWrap sx={{marginLeft: "auto", marginRight:"auto"}}>
+            <Typography
+              variant="h2"
+              component="h1"
+              noWrap
+              sx={{
+                marginLeft: "auto",
+                marginRight: "auto",
+                paddingTop: "10px",
+              }}
+            >
               Teams
             </Typography>
           </Toolbar>
@@ -126,7 +129,6 @@ export default function ResponsiveDrawer() {
           sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
           aria-label="teams"
         >
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
           <Drawer
             variant="temporary"
             open={mobileOpen}
@@ -167,7 +169,7 @@ export default function ResponsiveDrawer() {
           }}
         >
           <Toolbar />
-          <EmployeesDisplay setTeam={setTeamId} teamSelected={teamId} />
+          <EmployeesDisplay teamName={teamName} teamId={teamId} />
         </Box>
       </Box>
     </ThemeProvider>

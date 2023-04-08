@@ -4,8 +4,8 @@ import { EmployeesRowT } from "./types/apiTypes";
 import { Button, Card, CardContent, Grid, Typography } from "@mui/material";
 
 interface EmployeesDisplayI {
-  teamSelected: string | undefined;
-  setTeam: (value: string) => void;
+  teamId: string | undefined;
+  teamName: string | undefined
 }
 
 interface CardEmployeeI {
@@ -22,8 +22,8 @@ interface CardEmployeeI {
 }
 
 export const EmployeesDisplay = ({
-  teamSelected,
-  setTeam,
+  teamId,
+  teamName
 }: EmployeesDisplayI) => {
   const [employees, setEmployees] = useState<EmployeesRowT>();
 
@@ -48,18 +48,17 @@ export const EmployeesDisplay = ({
 
   return (
     <>
-      <Typography variant="h1" component="h1">
-        Employees
+      <Typography variant="h4" component="h3" noWrap sx={{ display: "flex", justifyContent:"center", margin: "20px"}}>
+        {teamName}
       </Typography>
       <Grid
         container
-        rowSpacing={{ xs: 1, sm: 2, md: 3 }}
-        columnSpacing={3}
-        justifyContent="center"
+        spacing={2}
+        sx={{ display: "flex", justifyContent:"center"}}
       >
         {employees &&
           employees.map((employee) => {
-            if (teamSelected === employee.team) {
+            if (teamId === employee.team) {
               return (
                 <Grid item key={employee.id}>
                   <CardEmployee employee={employee}></CardEmployee>
@@ -68,7 +67,6 @@ export const EmployeesDisplay = ({
             }
           })}
       </Grid>
-      <Button onClick={() => setTeam("")}>Back</Button>
     </>
   );
 };
