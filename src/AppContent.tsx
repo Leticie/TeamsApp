@@ -9,7 +9,7 @@ import { Header } from "./Header";
 
 const drawerWidth = 240;
 
-export default function ResponsiveDrawer() {
+export default function AppContent() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [teamId, setTeamId] = useState<string>();
   const [teamName, setTeamName] = useState<string>();

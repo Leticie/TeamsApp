@@ -15,7 +15,6 @@ interface TeamsDrawerI {
 
 export const TeamsDrawer = ({drawerWidth, mobileOpen, handleDrawerToggle, setTeamId, setTeamName}: TeamsDrawerI) => {
 
-
     const drawerButtons = (
         <div>
           <Toolbar sx={{ height: "100px" }}>
