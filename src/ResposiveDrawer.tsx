@@ -2,17 +2,11 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import axios, { AxiosResponse } from "axios";
-import { TeamsRowT } from "./types/apiTypes";
-import { useState, useEffect } from "react";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { ButtonGroup, Button } from "@mui/material";
+import { useState } from "react";
 import { EmployeesDisplay } from "./EmployeesDisplay";
 import { TeamsDrawer } from "./TeamsDrawer";
 
@@ -37,22 +31,10 @@ export default function ResponsiveDrawer() {
     setTeamName(value)
   }
 
-  const theme = createTheme({
-    palette: {
-      mode: "dark",
-      primary: {
-        main: "#02D076", //green
-      },
-      secondary: {
-        main: "#10BFFC", //blue
-      },
-    },
-  });
 
 
 
   return (
-    <ThemeProvider theme={theme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar
@@ -108,6 +90,5 @@ export default function ResponsiveDrawer() {
           <EmployeesDisplay teamName={teamName} teamId={teamId} />
         </Box>
       </Box>
-    </ThemeProvider>
   );
 }

@@ -17,15 +17,12 @@ const theme = createTheme({
 });
 
 function App() {
-  const [teamSelected, setTeam] = useState<string>("");
-
-  const handleTeamSelection = (value: string) => {
-    setTeam(value);
-  };
 
   return (
     <>
+     <ThemeProvider theme={theme}>
       <ResponsiveDrawer />
+      </ThemeProvider>
     </>
   )
 }
