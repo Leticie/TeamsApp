@@ -3,6 +3,7 @@ import { ReactComponent as Logo } from "./assets/alveno-logo.svg";
 import axios, { AxiosResponse } from "axios";
 import { useState, useEffect } from "react";
 import { TeamsRowT } from "./types/apiTypes";
+import { TeamsButtons } from "./TeamsButtons";
 
 interface TeamsDrawerI {
     drawerWidth: number
@@ -13,26 +14,7 @@ interface TeamsDrawerI {
 }
 
 export const TeamsDrawer = ({drawerWidth, mobileOpen, handleDrawerToggle, setTeamId, setTeamName}: TeamsDrawerI) => {
-    const [teams, setTeams] = useState<TeamsRowT>();
 
-    const config = {
-        headers: {
-          apikey: import.meta.env.VITE_API_KEY,
-        },
-      };
-
-    useEffect(() => {
-        axios
-          .get(
-            `https://nktebdhspzvpwguqcksn.supabase.co/rest/v1/teams?select=*`,
-            config
-          )
-          .then((response: AxiosResponse<TeamsRowT>) => {
-            setTeams(response.data);
-          });
-      }, []);
-    
-      console.log(teams);
 
     const drawerButtons = (
         <div>
@@ -40,25 +22,7 @@ export const TeamsDrawer = ({drawerWidth, mobileOpen, handleDrawerToggle, setTea
             <Logo />
           </Toolbar>
           <Divider />
-          <ButtonGroup
-            orientation="vertical"
-            variant="contained"
-            sx={{ width: "239px" }} //1px smaller than drawer width
-          >
-            {teams &&
-              teams.map((team) => (
-                <Button
-                  key={team.id}
-                  sx={{ fontSize: "20px", height: "70px" }}
-                  onClick={() => {
-                    setTeamId(`${team.id}`);
-                    setTeamName(`${team.name}`);
-                  }}
-                >
-                  {team.name}
-                </Button>
-              ))}
-          </ButtonGroup>
+          <TeamsButtons setTeamId={setTeamId} setTeamName={setTeamName}/>
         </div>
       );
 
