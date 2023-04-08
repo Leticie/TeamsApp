@@ -14,38 +14,28 @@ import { useState, useEffect } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ButtonGroup, Button } from "@mui/material";
 import { EmployeesDisplay } from "./EmployeesDisplay";
-import { ReactComponent as Logo } from "./assets/alveno-logo.svg";
+import { TeamsDrawer } from "./TeamsDrawer";
 
 const drawerWidth = 240;
+
 
 export default function ResponsiveDrawer() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [teamId, setTeamId] = useState<string>();
   const [teamName, setTeamName] = useState<string>();
-  const [teams, setTeams] = useState<TeamsRowT>();
+
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const config = {
-    headers: {
-      apikey: import.meta.env.VITE_API_KEY,
-    },
-  };
+  const handleTeamId = (value:string) => {
+    setTeamId(value)
+  }
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://nktebdhspzvpwguqcksn.supabase.co/rest/v1/teams?select=*`,
-        config
-      )
-      .then((response: AxiosResponse<TeamsRowT>) => {
-        setTeams(response.data);
-      });
-  }, []);
-
-  console.log(teams);
+  const handleTeamName = (value:string) => {
+    setTeamName(value)
+  }
 
   const theme = createTheme({
     palette: {
@@ -59,33 +49,7 @@ export default function ResponsiveDrawer() {
     },
   });
 
-  const drawerButtons = (
-    <div>
-      <Toolbar sx={{ height: "100px" }}>
-        <Logo />
-      </Toolbar>
-      <Divider />
-      <ButtonGroup
-        orientation="vertical"
-        variant="contained"
-        sx={{ width: "239px" }} //1px smaller than drawer width
-      >
-        {teams &&
-          teams.map((team) => (
-            <Button
-              key={team.id}
-              sx={{ fontSize: "20px", height: "70px" }}
-              onClick={() => {
-                setTeamId(`${team.id}`);
-                setTeamName(`${team.name}`);
-              }}
-            >
-              {team.name}
-            </Button>
-          ))}
-      </ButtonGroup>
-    </div>
-  );
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -129,36 +93,8 @@ export default function ResponsiveDrawer() {
           sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
           aria-label="teams"
         >
-          <Drawer
-            variant="temporary"
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-            sx={{
-              display: { xs: "block", sm: "none" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-              },
-            }}
-          >
-            {drawerButtons}
-          </Drawer>
-          <Drawer
-            variant="permanent"
-            sx={{
-              display: { xs: "none", sm: "block" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-              },
-            }}
-            open
-          >
-            {drawerButtons}
-          </Drawer>
+          <TeamsDrawer drawerWidth={drawerWidth} handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen} setTeamId={handleTeamId} setTeamName={handleTeamName}/>
+          
         </Box>
         <Box
           component="main"
