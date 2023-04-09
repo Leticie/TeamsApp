@@ -4,7 +4,8 @@ import { EmployeesRowT } from "../types/apiTypes";
 import { Container, Fab, Grid, Toolbar } from "@mui/material";
 import { CardEmployee } from "./CardEmployee";
 import { SelectedTeamHeader } from "./EmployeeDisplayHeaders";
-import AddIcon from "@mui/icons-material/Add";
+
+import AddEmployeeForm from "./AddEmployeeForm";
 interface EmployeesDisplayI {
   teamId: string;
   teamName: string;
@@ -52,11 +53,7 @@ export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
             }
           })}
       </Grid>
-      <Container sx={{ display: "flex", justifyContent: "center"}}>
-        <Fab color="primary" aria-label="add" sx={{ marginTop: "20px"}} >
-          <AddIcon />
-        </Fab>
-      </Container>
+      <AddEmployeeForm />
     </>
   );
 };
