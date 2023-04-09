@@ -1,5 +1,5 @@
 import { Drawer } from "@mui/material";
-import { DRAWER_WIDTH } from "../constants/constants";
+import { TemporaryDrawerS } from "../styles/TemporaryDrawer.styles";
 
 interface TemporaryDrawerI {
   drawerButtons: JSX.Element;
@@ -8,13 +8,7 @@ interface TemporaryDrawerI {
 export const TemporaryDrawer = ({ drawerButtons }: TemporaryDrawerI) => (
   <Drawer
     variant="permanent"
-    sx={{
-      display: { xs: "none", sm: "block" },
-      "& .MuiDrawer-paper": {
-        boxSizing: "border-box",
-        width: DRAWER_WIDTH,
-      },
-    }}
+    sx={TemporaryDrawerS}
     open
   >
     {drawerButtons}

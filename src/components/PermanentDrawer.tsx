@@ -1,5 +1,6 @@
 import { Drawer } from "@mui/material";
 import { DRAWER_WIDTH } from "../constants/constants";
+import { PermanentDrawerS } from "../styles/PermanentDrawer.styles";
 
 interface PermanentDrawerI {
   mobileOpen: boolean;
@@ -19,13 +20,7 @@ export const PermanentDrawer = ({
     ModalProps={{
       keepMounted: true, // Better open performance on mobile.
     }}
-    sx={{
-      display: { xs: "block", sm: "none" },
-      "& .MuiDrawer-paper": {
-        boxSizing: "border-box",
-        width: DRAWER_WIDTH,
-      },
-    }}
+    sx={PermanentDrawerS}
   >
     {drawerButtons}
   </Drawer>
