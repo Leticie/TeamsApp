@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { useState, useEffect } from "react";
 import { EmployeesRowT } from "../types/apiTypes";
-import { Container, Fab, Grid, Toolbar } from "@mui/material";
+import { Grid, Toolbar } from "@mui/material";
 import { CardEmployee } from "./CardEmployee";
 import { SelectedTeamHeader } from "./EmployeeDisplayHeaders";
 
@@ -53,7 +53,30 @@ export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
             }
           })}
       </Grid>
-      <AddEmployeeForm />
+      <AddEmployeeForm teamId={teamId}/>
     </>
   );
 };
+
+/*
+const getSelectedTeamEmployees = (employees: EmployeesRowT, teamId: string) => {
+  const selectedTeamEmployees:EmployeesRowT = [];
+  employees.map((employee) => {
+    if (teamId === employee.team) {
+      selectedTeamEmployees.push(employee);
+    }
+  })
+  return selectedTeamEmployees;
+};
+
+const getEndDateEmployees = (employees: EmployeesRowT, teamId: string) => {
+  const selectedTeamEmployees = getSelectedTeamEmployees(employees, teamId)
+  const endDateEmployees:EmployeesRowT = []
+  selectedTeamEmployees.map((employee) => {
+    if (employee.endDate) {
+      endDateEmployees.push(employee);
+    }
+  })
+  return endDateEmployees;
+}
+*/

@@ -4,21 +4,50 @@ import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Container, Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import { useState } from "react";
+import axios from "axios";
 
-export default function AddEmployeeForm() {
-  const [open, setOpen] = React.useState(false);
+interface AddEmployeeFormI {
+    teamId: string
+}
 
-  const handleClickOpen = () => {
-    setOpen(true);
+
+export default function AddEmployeeForm({teamId}:AddEmployeeFormI) {
+  const [open, setOpen] = useState<boolean>(false);
+  const [data, setData] = useState({
+    name: "",
+    surname: "",
+    position: "",
+    team: teamId
+  })
+
+  const handleClickOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const handleInput = (event: any) => {
+    setData(prevData => ({...prevData, [event.target.name]: event.target.value}))
+  }
+
+  const config = {
+    headers: {
+      apikey: import.meta.env.VITE_API_KEY,
+    },
   };
 
-  const handleClose = () => {
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    axios
+        .post("https://nktebdhspzvpwguqcksn.supabase.co/rest/v1/employees", data ,config)
+        .then(response => console.log(response))
+        .catch(err => console.log(err))
     setOpen(false);
   };
+
+
+  console.log(data)
 
   return (
     <>
@@ -32,42 +61,44 @@ export default function AddEmployeeForm() {
           <AddIcon />
         </Fab>
       </Container>
+
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add new member</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Name"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Surname"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Position"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Start date"
-            fullWidth
-            variant="standard"
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Submit</Button>
-        </DialogActions>
+        <form onSubmit={handleSubmit}>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Name"
+              fullWidth
+              variant="standard"
+              name="name"
+              onChange={handleInput}
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Surname"
+              fullWidth
+              variant="standard"
+              name="surname"
+              onChange={handleInput}
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Position"
+              fullWidth
+              variant="standard"
+              name="position"
+              onChange={handleInput}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button type="submit">Submit</Button>
+          </DialogActions>
+        </form>
       </Dialog>
     </>
   );
