@@ -1,6 +1,8 @@
-import { Divider, Drawer, Toolbar } from "@mui/material";
+import { Divider, Toolbar } from "@mui/material";
 import { ReactComponent as Logo } from "../assets/alveno-logo.svg";
 import { TeamsButtons } from "./TeamsButtons";
+import { TemporaryDrawer } from "./TemporaryDrawer";
+import { PermanentDrawer } from "./PermanentDrawer";
 
 interface TeamsDrawerI {
   drawerWidth: number;
@@ -19,9 +21,11 @@ export const TeamsDrawer = ({
   setTeamId,
   setTeamName,
 }: TeamsDrawerI) => {
+
+  //misto height 100px doplnit height podle vysky appbaru
   const drawerButtons = (
     <div>
-      <Toolbar sx={{ height: "100px" }}>
+      <Toolbar sx={{ height: "100px" }}> 
         <Logo />
       </Toolbar>
       <Divider />
@@ -35,36 +39,16 @@ export const TeamsDrawer = ({
 
   return (
     <>
-      <Drawer
-        variant="temporary"
-        open={mobileOpen}
-        onClose={handleDrawerToggle}
-        ModalProps={{
-          keepMounted: true, // Better open performance on mobile.
-        }}
-        sx={{
-          display: { xs: "block", sm: "none" },
-          "& .MuiDrawer-paper": {
-            boxSizing: "border-box",
-            width: drawerWidth,
-          },
-        }}
-      >
-        {drawerButtons}
-      </Drawer>
-      <Drawer
-        variant="permanent"
-        sx={{
-          display: { xs: "none", sm: "block" },
-          "& .MuiDrawer-paper": {
-            boxSizing: "border-box",
-            width: drawerWidth,
-          },
-        }}
-        open
-      >
-        {drawerButtons}
-      </Drawer>
+      <PermanentDrawer
+        mobileOpen={mobileOpen}
+        handleDrawerToggle={handleDrawerToggle}
+        drawerButtons={drawerButtons}
+        drawerWidth={drawerWidth}
+      />
+      <TemporaryDrawer
+        drawerButtons={drawerButtons}
+        drawerWidth={drawerWidth}
+      />
     </>
   );
 };
