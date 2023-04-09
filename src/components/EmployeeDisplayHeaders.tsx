@@ -4,7 +4,7 @@ interface SelectedTeamI {
   teamName: string;
 }
 
-export const DefaultMessageHeader = () => (
+export const WelcomeMessageHeader = () => (
   <>
     <Typography
       variant="h3"

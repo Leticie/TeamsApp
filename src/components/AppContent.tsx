@@ -5,7 +5,7 @@ import { useState } from "react";
 import { EmployeesDisplay } from "./EmployeesDisplay";
 import { TeamsDrawer } from "./TeamsDrawer";
 import { Header } from "./Header";
-import { DefaultMessageHeader } from "./EmployeeDisplayHeaders";
+import { WelcomeMessageHeader } from "./EmployeeDisplayHeaders";
 import { BoxEmployeeDisplayS } from "../styles/AppContent.styles";
 
 export const AppContent = () => {
@@ -30,7 +30,7 @@ export const AppContent = () => {
         />
       </Box>
       <Box sx={BoxEmployeeDisplayS}>
-        {teamName ? <EmployeesDisplay teamName={teamName} teamId={teamId} /> : <DefaultMessageHeader />}
+        {teamName ? <EmployeesDisplay teamName={teamName} teamId={teamId} /> : <WelcomeMessageHeader />}
       </Box>
     </Box>
   );
