@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from "axios";
 import { TeamsRowT } from "../types/apiTypes";
 import { useState, useEffect } from "react";
 import { TEAMS_URL } from "../constants/constants";
-import { TeamsButton } from "../styles/TeamsButton.style";
+import { TeamsButtonS } from "../styles/TeamsButton.styles";
 
 interface TeamsButtonsI {
   setTeamId: (value: string) => void;
@@ -45,7 +45,7 @@ export const TeamsButtons = ({
           <Button
             key={team.id}
             sx={{
-              ...TeamsButton,
+              ...TeamsButtonS,
               backgroundColor: teamName === team.name ? "secondary.dark" : "secondary.light",
             }}
             onClick={() => {

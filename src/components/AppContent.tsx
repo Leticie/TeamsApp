@@ -6,6 +6,7 @@ import { EmployeesDisplay } from "./EmployeesDisplay";
 import { TeamsDrawer } from "./TeamsDrawer";
 import { Header } from "./Header";
 import { DefaultMessageHeader } from "./EmployeeDisplayHeaders";
+import { BoxEmployeeDisplayS } from "../styles/AppContent.styles";
 
 export const AppContent = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -19,9 +20,7 @@ export const AppContent = () => {
   return (
     <Box sx={{ display: "flex" }}>
       <Header handleDrawerToggle={handleDrawerToggle} />
-      <Box
-        sx={{ width: { sm: DRAWER_WIDTH }, flexShrink: { sm: 0 } }}
-      >
+      <Box sx={{ width: { sm: DRAWER_WIDTH }, flexShrink: { sm: 0 } }}>
         <TeamsDrawer
           handleDrawerToggle={handleDrawerToggle}
           mobileOpen={mobileOpen}
@@ -30,15 +29,9 @@ export const AppContent = () => {
           teamName={teamName}
         />
       </Box>
-      <Box
-        sx={{
-          flexGrow: 1,
-          padding: 3,
-          width: `calc(100% - ${DRAWER_WIDTH}px)`,
-        }}
-      >
-        {teamName? <EmployeesDisplay teamName={teamName} teamId={teamId} /> :<DefaultMessageHeader />}
+      <Box sx={BoxEmployeeDisplayS}>
+        {teamName ? <EmployeesDisplay teamName={teamName} teamId={teamId} /> : <DefaultMessageHeader />}
       </Box>
     </Box>
   );
-}
+};

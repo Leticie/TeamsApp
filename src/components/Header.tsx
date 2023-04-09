@@ -1,21 +1,14 @@
 import { AppBar, Toolbar, IconButton, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import WorkspacesIcon from "@mui/icons-material/Workspaces";
-import { DRAWER_WIDTH } from "../constants/constants";
+import { AppBarS, TypographyHeaderS } from "../styles/Header.styles";
 
 interface HeaderI {
   handleDrawerToggle: () => void;
 }
 
 export const Header = ({ handleDrawerToggle }: HeaderI) => (
-  <AppBar
-    position="fixed"
-    sx={{
-      width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
-      ml: { sm: `${DRAWER_WIDTH}px` },
-      minHeight: "100px",
-    }}
-  >
+  <AppBar position="fixed" sx={AppBarS}>
     <Toolbar sx={{ display: "flex", justifyContent: "center" }}>
       <IconButton
         edge="start"
@@ -26,11 +19,7 @@ export const Header = ({ handleDrawerToggle }: HeaderI) => (
       </IconButton>
       <Typography
         variant="h2"
-        sx={{
-          marginLeft: "auto", //margin to center
-          marginRight: "auto",
-          marginTop: "10px",
-        }}
+        sx={TypographyHeaderS}
       >
         Teams
       </Typography>
