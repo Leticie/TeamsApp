@@ -1,8 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 import { useState, useEffect } from "react";
-import { EmployeesRowT } from "./types/apiTypes";
+import { EmployeesRowT } from "../types/apiTypes";
 import { Card, CardContent, Grid, Toolbar, Typography } from "@mui/material";
-import PersonIcon from '@mui/icons-material/Person';
+import PersonIcon from "@mui/icons-material/Person";
 
 interface EmployeesDisplayI {
   teamId: string | undefined;
@@ -23,7 +23,7 @@ interface CardEmployeeI {
 }
 
 interface SelectedTeamNameI {
-  teamName:string
+  teamName: string;
 }
 
 export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
@@ -51,31 +51,47 @@ export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
   const DefaultMessage = () => {
     return (
       <>
-      <Typography variant="h3" component="h3" sx={{ textAlign:"center", marginTop: "150px", width:"100%" }}>Welcome to Teams</Typography>
-      <Typography variant="overline" component="h4" color="secondary" sx={{ textAlign:"center", width:"100%" }}>Please select a team</Typography>
+        <Typography
+          variant="h3"
+          component="h3"
+          sx={{ textAlign: "center", marginTop: "150px", width: "100%" }}
+        >
+          Welcome to Teams
+        </Typography>
+        <Typography
+          variant="overline"
+          component="h4"
+          color="secondary"
+          sx={{ textAlign: "center", width: "100%" }}
+        >
+          Please select a team
+        </Typography>
       </>
-      )
-  }
+    );
+  };
 
-  const SelectedTeamName = ({teamName}:SelectedTeamNameI) => {
+  const SelectedTeamName = ({ teamName }: SelectedTeamNameI) => {
     return (
       <Typography
         variant="overline"
         component="h3"
         fontSize="40px"
-        sx={{ textAlign:"center", marginTop: "40px", marginBottom:"20px", width:"100%" }}
-      >{teamName}
+        sx={{
+          textAlign: "center",
+          marginTop: "40px",
+          marginBottom: "20px",
+          width: "100%",
+        }}
+      >
+        {teamName}
       </Typography>
-    )
-  }
+    );
+  };
 
   return (
     <>
       <Toolbar />
-      {teamName?
-      <SelectedTeamName teamName={teamName} />
-      : <DefaultMessage />
-      }
+      {teamName ? <SelectedTeamName teamName={teamName} /> : <DefaultMessage />}
       <Grid
         container
         spacing={2}
@@ -100,13 +116,22 @@ export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
 const CardEmployee = ({ employee }: CardEmployeeI) => {
   if (employee.endDate) {
     return (
-      <Card sx={{ padding: 4, bgcolor: "grey", width:"200px", heigth:"200px"}}>
+      <Card
+        sx={{ padding: 4, bgcolor: "grey", width: "200px", heigth: "200px" }}
+      >
         <CardEmployeeContent employee={employee}></CardEmployeeContent>
       </Card>
     );
   }
   return (
-    <Card sx={{ padding: 4, bgcolor: "primary.dark", minWidth:"200px", minHeigth:"200px"}}>
+    <Card
+      sx={{
+        padding: 4,
+        bgcolor: "primary.dark",
+        minWidth: "200px",
+        minHeigth: "200px",
+      }}
+    >
       <CardEmployeeContent employee={employee}></CardEmployeeContent>
     </Card>
   );
@@ -114,8 +139,17 @@ const CardEmployee = ({ employee }: CardEmployeeI) => {
 
 const CardEmployeeContent = ({ employee }: CardEmployeeI) => (
   <CardContent>
-    <PersonIcon sx={{fontSize:"11rem", justifyContent:"center" }}/>
-    <Typography variant="h5" component="div" textAlign="center" fontSize="20px">{`${employee.name} ${employee.surname}`}</Typography>
-    <Typography variant="overline" component="div" textAlign="center">{`${employee.position}`.toUpperCase()}</Typography>
+    <PersonIcon sx={{ fontSize: "11rem", justifyContent: "center" }} />
+    <Typography
+      variant="h5"
+      component="div"
+      textAlign="center"
+      fontSize="20px"
+    >{`${employee.name} ${employee.surname}`}</Typography>
+    <Typography
+      variant="overline"
+      component="div"
+      textAlign="center"
+    >{`${employee.position}`}</Typography>
   </CardContent>
 );

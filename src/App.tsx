@@ -1,6 +1,6 @@
 import "./App.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import AppContent from "./AppContent";
+import AppContent from "./components/AppContent";
 
 //theme colors
 const theme = createTheme({
