@@ -1,15 +1,13 @@
 import axios, { AxiosResponse } from "axios";
 import { useState, useEffect } from "react";
 import { EmployeesRowT } from "../types/apiTypes";
-import { Grid, Toolbar } from "@mui/material";
+import { Container, Fab, Grid, Toolbar } from "@mui/material";
 import { CardEmployee } from "./CardEmployee";
-import {
-  SelectedTeamHeader,
-  DefaultMessageHeader,
-} from "./EmployeeDisplayHeaders";
+import { SelectedTeamHeader } from "./EmployeeDisplayHeaders";
+import AddIcon from "@mui/icons-material/Add";
 interface EmployeesDisplayI {
-  teamId: string | undefined;
-  teamName: string | undefined;
+  teamId: string;
+  teamName: string;
 }
 
 export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
@@ -37,7 +35,7 @@ export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
   return (
     <>
       <Toolbar />
-      {teamName ? <SelectedTeamHeader teamName={teamName} /> : <DefaultMessageHeader />}
+      <SelectedTeamHeader teamName={teamName} />
       <Grid
         container
         spacing={2}
@@ -54,6 +52,11 @@ export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
             }
           })}
       </Grid>
+      <Container sx={{ display: "flex", justifyContent: "center"}}>
+        <Fab color="primary" aria-label="add" sx={{ marginTop: "20px"}} >
+          <AddIcon />
+        </Fab>
+      </Container>
     </>
   );
 };

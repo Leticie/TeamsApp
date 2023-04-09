@@ -5,6 +5,7 @@ import { useState } from "react";
 import { EmployeesDisplay } from "./EmployeesDisplay";
 import { TeamsDrawer } from "./TeamsDrawer";
 import { Header } from "./Header";
+import { DefaultMessageHeader } from "./EmployeeDisplayHeaders";
 
 export default function AppContent() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -38,7 +39,7 @@ export default function AppContent() {
           width: `calc(100% - ${DRAWER_WIDTH}px)`,
         }}
       >
-        <EmployeesDisplay teamName={teamName} teamId={teamId} />
+        {teamName? <EmployeesDisplay teamName={teamName} teamId={teamId} /> :<DefaultMessageHeader />}
       </Box>
     </Box>
   );
