@@ -1,7 +1,7 @@
 import { Drawer } from "@mui/material";
+import { DRAWER_WIDTH } from "../constants/constants";
 
 interface PermanentDrawerI {
-  drawerWidth: number;
   mobileOpen: boolean;
   drawerButtons: JSX.Element;
   handleDrawerToggle: () => void;
@@ -10,7 +10,6 @@ interface PermanentDrawerI {
 export const PermanentDrawer = ({
   mobileOpen,
   handleDrawerToggle,
-  drawerWidth,
   drawerButtons,
 }: PermanentDrawerI) => {
   return (
@@ -25,7 +24,7 @@ export const PermanentDrawer = ({
         display: { xs: "block", sm: "none" },
         "& .MuiDrawer-paper": {
           boxSizing: "border-box",
-          width: drawerWidth,
+          width: DRAWER_WIDTH,
         },
       }}
     >

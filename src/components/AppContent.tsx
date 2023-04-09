@@ -1,12 +1,12 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-
+import { DRAWER_WIDTH } from "../constants/constants";
 import { useState } from "react";
 import { EmployeesDisplay } from "./EmployeesDisplay";
 import { TeamsDrawer } from "./TeamsDrawer";
 import { Header } from "./Header";
 
-const drawerWidth = 240;
+
 
 export default function AppContent() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -28,16 +28,14 @@ export default function AppContent() {
   return (
     <Box sx={{ display: "flex" }}>
       <Header
-        drawerWidth={drawerWidth}
         handleDrawerToggle={handleDrawerToggle}
       />
       <Box
         component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        sx={{ width: { sm: DRAWER_WIDTH }, flexShrink: { sm: 0 } }}
         aria-label="teams"
       >
         <TeamsDrawer
-          drawerWidth={drawerWidth}
           handleDrawerToggle={handleDrawerToggle}
           mobileOpen={mobileOpen}
           setTeamId={handleTeamId}
@@ -49,7 +47,7 @@ export default function AppContent() {
         sx={{
           flexGrow: 1,
           padding: 3,
-          width: `calc(100% - ${drawerWidth}px)`,
+          width: `calc(100% - ${DRAWER_WIDTH}px)`,
         }}
       >
         <EmployeesDisplay teamName={teamName} teamId={teamId} />

@@ -1,20 +1,20 @@
 import { AppBar, Toolbar, IconButton, Typography } from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu";
 import WorkspacesIcon from '@mui/icons-material/Workspaces';
+import { DRAWER_WIDTH } from "../constants/constants";
 
 interface HeaderI {
-    drawerWidth: number
     handleDrawerToggle: () => void
 }
 
-export const Header = ({drawerWidth, handleDrawerToggle}:HeaderI) => {
+export const Header = ({handleDrawerToggle}:HeaderI) => {
     return (
         <>
         <AppBar
           position="fixed"
           sx={{
-            width: { sm: `calc(100% - ${drawerWidth}px)` },
-            ml: { sm: `${drawerWidth}px` },
+            width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
+            ml: { sm: `${DRAWER_WIDTH}px` },
             minHeight: "100px",
           }}
         >

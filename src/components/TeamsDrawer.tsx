@@ -4,8 +4,8 @@ import { TeamsButtons } from "./TeamsButtons";
 import { TemporaryDrawer } from "./TemporaryDrawer";
 import { PermanentDrawer } from "./PermanentDrawer";
 
+
 interface TeamsDrawerI {
-  drawerWidth: number;
   mobileOpen: boolean;
   handleDrawerToggle: () => void;
   setTeamId: (value: string) => void;
@@ -14,7 +14,6 @@ interface TeamsDrawerI {
 }
 
 export const TeamsDrawer = ({
-  drawerWidth,
   mobileOpen,
   teamName,
   handleDrawerToggle,
@@ -43,11 +42,9 @@ export const TeamsDrawer = ({
         mobileOpen={mobileOpen}
         handleDrawerToggle={handleDrawerToggle}
         drawerButtons={drawerButtons}
-        drawerWidth={drawerWidth}
       />
       <TemporaryDrawer
         drawerButtons={drawerButtons}
-        drawerWidth={drawerWidth}
       />
     </>
   );

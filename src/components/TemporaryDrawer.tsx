@@ -1,13 +1,12 @@
 import { Drawer } from "@mui/material";
+import { DRAWER_WIDTH } from "../constants/constants";
 
 interface TemporaryDrawerI {
-  drawerWidth: number;
   drawerButtons: JSX.Element;
 }
 
 export const TemporaryDrawer = ({
   drawerButtons,
-  drawerWidth,
 }: TemporaryDrawerI) => {
   return (
     <Drawer
@@ -16,7 +15,7 @@ export const TemporaryDrawer = ({
         display: { xs: "none", sm: "block" },
         "& .MuiDrawer-paper": {
           boxSizing: "border-box",
-          width: drawerWidth,
+          width: DRAWER_WIDTH,
         },
       }}
       open
