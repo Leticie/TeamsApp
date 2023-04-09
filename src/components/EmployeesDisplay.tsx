@@ -28,7 +28,8 @@ export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
       )
       .then((response: AxiosResponse<EmployeesRowT>) => {
         setEmployees(response.data);
-      });
+      })
+      .catch(err => console.log(err)) 
   }, []);
 
   console.log(employees);

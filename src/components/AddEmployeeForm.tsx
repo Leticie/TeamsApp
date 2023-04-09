@@ -40,7 +40,7 @@ export default function AddEmployeeForm({teamId}:AddEmployeeFormI) {
   const handleSubmit = (event: any) => {
     event.preventDefault();
     axios
-        .post("https://nktebdhspzvpwguqcksn.supabase.co/rest/v1/employees", data ,config)
+        .post("https://nktebdhspzvpwguqcksn.supabase.co/rest/v1/employees", data, config)
         .then(response => console.log(response))
         .catch(err => console.log(err))
     setOpen(false);

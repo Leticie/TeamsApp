@@ -30,7 +30,8 @@ export const TeamsButtons = ({
       )
       .then((response: AxiosResponse<TeamsRowT>) => {
         setTeams(response.data);
-      });
+      })
+      .catch(err => console.log(err))
   }, []);
 
   console.log(teams);
