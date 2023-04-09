@@ -2,11 +2,13 @@ import { ButtonGroup, Button } from "@mui/material";
 import axios, { AxiosResponse } from "axios";
 import { TeamsRowT } from "../types/apiTypes";
 import { useState, useEffect } from "react";
+import { TEAMS_URL } from "../constants/constants";
+import { TeamsButton } from "../styles/TeamsButton.style";
 
 interface TeamsButtonsI {
   setTeamId: (value: string) => void;
-  setTeamName: (value: string) => void;
-  teamName: string;
+  setTeamName: (value: string | null) => void;
+  teamName: string | null;
 }
 
 export const TeamsButtons = ({
@@ -24,14 +26,9 @@ export const TeamsButtons = ({
 
   useEffect(() => {
     axios
-      .get(
-        `https://nktebdhspzvpwguqcksn.supabase.co/rest/v1/teams?select=*`,
-        config
-      )
-      .then((response: AxiosResponse<TeamsRowT>) => {
-        setTeams(response.data);
-      })
-      .catch(err => console.log(err))
+      .get(TEAMS_URL, config)
+      .then((response: AxiosResponse<TeamsRowT>) => setTeams(response.data))
+      .catch(err => console.error(err))
   }, []);
 
   console.log(teams);
@@ -40,7 +37,7 @@ export const TeamsButtons = ({
     <ButtonGroup
       orientation="vertical"
       variant="contained"
-      sx={{ width: "239px" }} //1px smaller than drawer width
+      sx={{ width: "239px" }} //1px smaller than drawer width, TODO change to calc
       color="secondary"
     >
       {teams &&
@@ -48,15 +45,12 @@ export const TeamsButtons = ({
           <Button
             key={team.id}
             sx={{
-              fontSize: "23px",
-              height: "70px",
-              justifyContent: "left",
-              backgroundColor:
-                teamName === team.name ? "secondary.dark" : "secondary.light",
+              ...TeamsButton,
+              backgroundColor: teamName === team.name ? "secondary.dark" : "secondary.light",
             }}
             onClick={() => {
-              setTeamId(`${team.id}`);
-              setTeamName(`${team.name}`);
+              setTeamId(team.id);
+              setTeamName(team.name);
             }}
           >
             {team.name}

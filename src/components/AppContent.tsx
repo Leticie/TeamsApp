@@ -7,22 +7,20 @@ import { TeamsDrawer } from "./TeamsDrawer";
 import { Header } from "./Header";
 import { DefaultMessageHeader } from "./EmployeeDisplayHeaders";
 
-export default function AppContent() {
+export const AppContent = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [teamName, setTeamName] = useState<string | null>("");
   const [teamId, setTeamId] = useState<string>("");
-  const [teamName, setTeamName] = useState<string>("");
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
-  const handleTeamId = (value: string) => setTeamId(value);
-  const handleTeamName = (value: string) => setTeamName(value);
+  const handleTeamName = (teamName: string | null) => setTeamName(teamName);
+  const handleTeamId = (teamId: string) => setTeamId(teamId);
 
   return (
     <Box sx={{ display: "flex" }}>
       <Header handleDrawerToggle={handleDrawerToggle} />
       <Box
-        component="nav"
         sx={{ width: { sm: DRAWER_WIDTH }, flexShrink: { sm: 0 } }}
-        aria-label="teams"
       >
         <TeamsDrawer
           handleDrawerToggle={handleDrawerToggle}

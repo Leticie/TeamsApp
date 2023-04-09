@@ -18,8 +18,6 @@ export const Header = ({ handleDrawerToggle }: HeaderI) => (
   >
     <Toolbar sx={{ display: "flex", justifyContent: "center" }}>
       <IconButton
-        color="inherit"
-        aria-label="open drawer"
         edge="start"
         onClick={handleDrawerToggle}
         sx={{ display: { sm: "none" } }}
@@ -28,9 +26,8 @@ export const Header = ({ handleDrawerToggle }: HeaderI) => (
       </IconButton>
       <Typography
         variant="h2"
-        component="h1"
         sx={{
-          marginLeft: "auto",
+          marginLeft: "auto", //margin to center
           marginRight: "auto",
           marginTop: "10px",
         }}

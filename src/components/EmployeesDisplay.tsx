@@ -6,6 +6,7 @@ import { CardEmployee } from "./CardEmployee";
 import { SelectedTeamHeader } from "./EmployeeDisplayHeaders";
 
 import AddEmployeeForm from "./AddEmployeeForm";
+import { EMPLOYEES_URL } from "../constants/constants";
 interface EmployeesDisplayI {
   teamId: string;
   teamName: string;
@@ -22,14 +23,9 @@ export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://nktebdhspzvpwguqcksn.supabase.co/rest/v1/employees?select=*`,
-        config
-      )
-      .then((response: AxiosResponse<EmployeesRowT>) => {
-        setEmployees(response.data);
-      })
-      .catch(err => console.log(err)) 
+      .get(EMPLOYEES_URL,config)
+      .then((response: AxiosResponse<EmployeesRowT>) => setEmployees(response.data))
+      .catch(err => console.error(err)) 
   }, []);
 
   console.log(employees);

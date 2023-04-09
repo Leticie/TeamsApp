@@ -1,6 +1,6 @@
 import "./App.css";
 import { ThemeProvider } from "@mui/material/styles";
-import AppContent from "./components/AppContent";
+import { AppContent } from "./components/AppContent";
 import { theme } from "./styles/theme";
 
 function App() {

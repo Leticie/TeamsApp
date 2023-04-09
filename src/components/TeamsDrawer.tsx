@@ -8,9 +8,9 @@ import { PermanentDrawer } from "./PermanentDrawer";
 interface TeamsDrawerI {
   mobileOpen: boolean;
   handleDrawerToggle: () => void;
-  setTeamId: (value: string) => void;
-  setTeamName: (value: string) => void;
-  teamName: string;
+  setTeamId: (value: string ) => void;
+  setTeamName: (value: string | null) => void;
+  teamName: string | null;
 }
 
 export const TeamsDrawer = ({
@@ -23,7 +23,7 @@ export const TeamsDrawer = ({
 
   //misto height 100px doplnit height podle vysky appbaru
   const drawerButtons = (
-    <div>
+    <>
       <Toolbar sx={{ height: "100px" }}> 
         <Logo />
       </Toolbar>
@@ -33,7 +33,7 @@ export const TeamsDrawer = ({
         setTeamName={setTeamName}
         teamName={teamName}
       />
-    </div>
+    </>
   );
 
   return (

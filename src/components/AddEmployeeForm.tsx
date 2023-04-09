@@ -55,7 +55,6 @@ export default function AddEmployeeForm({teamId}:AddEmployeeFormI) {
         <Fab
           onClick={handleClickOpen}
           color="primary"
-          aria-label="add"
           sx={{ marginTop: "20px" }}
         >
           <AddIcon />
