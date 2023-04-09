@@ -1,19 +1,7 @@
 import "./App.css";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import AppContent from "./components/AppContent";
-
-//theme colors
-const theme = createTheme({
-  palette: {
-    mode: "dark",
-    primary: {
-      main: "#02D076", //green
-    },
-    secondary: {
-      main: "#10BFFC",
-    },
-  },
-});
+import { theme } from "./styles/theme";
 
 function App() {
   return (
