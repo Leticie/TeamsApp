@@ -46,6 +46,7 @@ export const CardEmployee = ({ employee }: CardEmployeeI) => {
       <Typography
         variant="overline"
         textAlign="center"
+        component="div"
       >{`${employee.position}`}</Typography>
     </CardContent>
   );
