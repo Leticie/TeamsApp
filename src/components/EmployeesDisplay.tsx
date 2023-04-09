@@ -2,16 +2,11 @@ import axios, { AxiosResponse } from "axios";
 import { useState, useEffect } from "react";
 import { EmployeesRowT } from "../types/apiTypes";
 import { Grid, Toolbar, Typography } from "@mui/material";
-import { CardEmployee } from "./CardEmpoloyee";
-
-
+import { CardEmployee } from "./CardEmployee";
+import { SelectedTeamNameHeader, DefaultMessageHeader } from "./EmpoloyeeDisplayHeaders";
 interface EmployeesDisplayI {
   teamId: string | undefined;
   teamName: string | undefined;
-}
-
-interface SelectedTeamNameI {
-  teamName: string;
 }
 
 export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
@@ -36,50 +31,11 @@ export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
 
   console.log(employees);
 
-  const DefaultMessage = () => {
-    return (
-      <>
-        <Typography
-          variant="h3"
-          component="h3"
-          sx={{ textAlign: "center", marginTop: "150px", width: "100%" }}
-        >
-          Welcome to Teams
-        </Typography>
-        <Typography
-          variant="overline"
-          component="h4"
-          color="secondary"
-          sx={{ textAlign: "center", width: "100%" }}
-        >
-          Please select a team
-        </Typography>
-      </>
-    );
-  };
-
-  const SelectedTeamName = ({ teamName }: SelectedTeamNameI) => {
-    return (
-      <Typography
-        variant="overline"
-        component="h3"
-        fontSize="40px"
-        sx={{
-          textAlign: "center",
-          marginTop: "40px",
-          marginBottom: "20px",
-          width: "100%",
-        }}
-      >
-        {teamName}
-      </Typography>
-    );
-  };
 
   return (
     <>
       <Toolbar />
-      {teamName ? <SelectedTeamName teamName={teamName} /> : <DefaultMessage />}
+      {teamName ? <SelectedTeamNameHeader teamName={teamName} /> : <DefaultMessageHeader />}
       <Grid
         container
         spacing={2}
