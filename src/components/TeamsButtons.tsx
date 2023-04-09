@@ -49,6 +49,7 @@ export const TeamsButtons = ({
               backgroundColor: teamName === team.name ? "secondary.dark" : "secondary.light",
             }}
             onClick={() => {
+              console.log(team.id, "mappedID")
               setTeamId(team.id);
               setTeamName(team.name);
             }}

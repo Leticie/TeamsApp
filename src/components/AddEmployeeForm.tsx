@@ -11,25 +11,26 @@ import { useState } from "react";
 import axios from "axios";
 
 interface AddEmployeeFormI {
-    teamId: string
+  teamId: string;
 }
 
-
-export default function AddEmployeeForm({teamId}:AddEmployeeFormI) {
+export default function AddEmployeeForm({ teamId }: AddEmployeeFormI) {
   const [open, setOpen] = useState<boolean>(false);
   const [data, setData] = useState({
     name: "",
     surname: "",
     position: "",
-    team: teamId
-  })
+  });
 
   const handleClickOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const handleInput = (event: any) => {
-    setData(prevData => ({...prevData, [event.target.name]: event.target.value}))
-  }
+    setData((prevData) => ({
+      ...prevData,
+      [event.target.name]: event.target.value,
+    }));
+  };
 
   const config = {
     headers: {
@@ -40,14 +41,17 @@ export default function AddEmployeeForm({teamId}:AddEmployeeFormI) {
   const handleSubmit = (event: any) => {
     event.preventDefault();
     axios
-        .post("https://nktebdhspzvpwguqcksn.supabase.co/rest/v1/employees", data, config)
-        .then(response => console.log(response))
-        .catch(err => console.log(err))
+      .post(
+        "https://nktebdhspzvpwguqcksn.supabase.co/rest/v1/employees",
+        { ...data, team: teamId }, // add selected team to request
+        config
+      )
+      .then((response) => console.log(response))
+      .catch((err) => console.log(err));
     setOpen(false);
   };
 
-
-  console.log(data)
+  console.log(data);
 
   return (
     <>
@@ -66,7 +70,6 @@ export default function AddEmployeeForm({teamId}:AddEmployeeFormI) {
         <form onSubmit={handleSubmit}>
           <DialogContent>
             <TextField
-              autoFocus
               margin="dense"
               label="Name"
               fullWidth
@@ -75,7 +78,6 @@ export default function AddEmployeeForm({teamId}:AddEmployeeFormI) {
               onChange={handleInput}
             />
             <TextField
-              autoFocus
               margin="dense"
               label="Surname"
               fullWidth
@@ -84,7 +86,6 @@ export default function AddEmployeeForm({teamId}:AddEmployeeFormI) {
               onChange={handleInput}
             />
             <TextField
-              autoFocus
               margin="dense"
               label="Position"
               fullWidth

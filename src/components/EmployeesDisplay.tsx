@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { useState, useEffect } from "react";
 import { EmployeesRowT } from "../types/apiTypes";
-import { Grid, Toolbar } from "@mui/material";
+import { Box, Container, Grid, Toolbar } from "@mui/material";
 import { CardEmployee } from "./CardEmployee";
 import { SelectedTeamHeader } from "./EmployeeDisplayHeaders";
 
@@ -23,9 +23,11 @@ export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
 
   useEffect(() => {
     axios
-      .get(EMPLOYEES_URL,config)
-      .then((response: AxiosResponse<EmployeesRowT>) => setEmployees(response.data))
-      .catch(err => console.error(err)) 
+      .get(EMPLOYEES_URL, config)
+      .then((response: AxiosResponse<EmployeesRowT>) =>
+        setEmployees(response.data)
+      )
+      .catch((err) => console.error(err));
   }, []);
 
   console.log(employees);
@@ -50,7 +52,7 @@ export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
             }
           })}
       </Grid>
-      <AddEmployeeForm teamId={teamId}/>
+      <AddEmployeeForm teamId={teamId} />
     </>
   );
 };

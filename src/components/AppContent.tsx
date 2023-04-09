@@ -17,6 +17,8 @@ export const AppContent = () => {
   const handleTeamName = (teamName: string | null) => setTeamName(teamName);
   const handleTeamId = (teamId: string) => setTeamId(teamId);
 
+  console.log(teamId)
+
   return (
     <Box sx={{ display: "flex" }}>
       <Header handleDrawerToggle={handleDrawerToggle} />
