@@ -36,33 +36,31 @@ export const TeamsButtons = ({
   console.log(teams);
 
   return (
-    <>
-      <ButtonGroup
-        orientation="vertical"
-        variant="contained"
-        sx={{ width: "239px" }} //1px smaller than drawer width
-        color="secondary"
-      >
-        {teams &&
-          teams.map((team) => (
-            <Button
-              key={team.id}
-              sx={{
-                fontSize: "23px",
-                height: "70px",
-                justifyContent: "left",
-                backgroundColor:
-                  teamName === team.name ? "secondary.dark" : "secondary.light",
-              }}
-              onClick={() => {
-                setTeamId(`${team.id}`);
-                setTeamName(`${team.name}`);
-              }}
-            >
-              {team.name}
-            </Button>
-          ))}
-      </ButtonGroup>
-    </>
+    <ButtonGroup
+      orientation="vertical"
+      variant="contained"
+      sx={{ width: "239px" }} //1px smaller than drawer width
+      color="secondary"
+    >
+      {teams &&
+        teams.map((team) => (
+          <Button
+            key={team.id}
+            sx={{
+              fontSize: "23px",
+              height: "70px",
+              justifyContent: "left",
+              backgroundColor:
+                teamName === team.name ? "secondary.dark" : "secondary.light",
+            }}
+            onClick={() => {
+              setTeamId(`${team.id}`);
+              setTeamName(`${team.name}`);
+            }}
+          >
+            {team.name}
+          </Button>
+        ))}
+    </ButtonGroup>
   );
 };

@@ -1,9 +1,12 @@
 import axios, { AxiosResponse } from "axios";
 import { useState, useEffect } from "react";
 import { EmployeesRowT } from "../types/apiTypes";
-import { Grid, Toolbar, Typography } from "@mui/material";
+import { Grid, Toolbar } from "@mui/material";
 import { CardEmployee } from "./CardEmployee";
-import { SelectedTeamNameHeader, DefaultMessageHeader } from "./EmpoloyeeDisplayHeaders";
+import {
+  SelectedTeamHeader,
+  DefaultMessageHeader,
+} from "./EmployeeDisplayHeaders";
 interface EmployeesDisplayI {
   teamId: string | undefined;
   teamName: string | undefined;
@@ -31,11 +34,10 @@ export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
 
   console.log(employees);
 
-
   return (
     <>
       <Toolbar />
-      {teamName ? <SelectedTeamNameHeader teamName={teamName} /> : <DefaultMessageHeader />}
+      {teamName ? <SelectedTeamHeader teamName={teamName} /> : <DefaultMessageHeader />}
       <Grid
         container
         spacing={2}
@@ -55,5 +57,3 @@ export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
     </>
   );
 };
-
-
