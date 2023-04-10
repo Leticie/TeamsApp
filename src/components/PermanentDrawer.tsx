@@ -1,5 +1,4 @@
 import { Drawer } from "@mui/material";
-import { DRAWER_WIDTH } from "../constants/constants";
 import { PermanentDrawerS } from "../styles/PermanentDrawer.styles";
 
 interface PermanentDrawerI {
