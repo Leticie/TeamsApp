@@ -2,7 +2,7 @@ import { ButtonGroup, Button } from "@mui/material";
 import axios, { AxiosResponse } from "axios";
 import { TeamsRowT } from "../types/apiTypes";
 import { useState, useEffect } from "react";
-import { CONFIG, TEAMS_URL } from "../constants/constants";
+import { CONFIG, DRAWER_WIDTH, TEAMS_URL } from "../constants/constants";
 import { TeamsButtonS } from "../styles/TeamsButton.styles";
 
 interface TeamsButtonsI {
@@ -31,7 +31,7 @@ export const TeamsButtons = ({
     <ButtonGroup
       orientation="vertical"
       variant="contained"
-      sx={{ width: "239px" }} //1px smaller than drawer width, TODO change to calc
+      sx={{ width: `calc(${DRAWER_WIDTH} - 1px)` }} //do not fit the drawer because of button border
       color="secondary"
     >
       {teams &&
