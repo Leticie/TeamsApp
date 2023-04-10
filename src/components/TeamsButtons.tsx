@@ -22,10 +22,8 @@ export const TeamsButtons = ({
     axios
       .get(TEAMS_URL, CONFIG)
       .then((response: AxiosResponse<TeamsRowT>) => setTeams(response.data))
-      .catch(err => console.error(err))
+      .catch((err) => console.error(err));
   }, []);
-
-  console.log(teams);
 
   return (
     <ButtonGroup
@@ -40,10 +38,11 @@ export const TeamsButtons = ({
             key={team.id}
             sx={{
               ...TeamsButtonS,
-              backgroundColor: teamName === team.name ? "secondary.dark" : "secondary.light",
+              backgroundColor:
+                teamName === team.name ? "secondary.dark" : "secondary.light",
             }}
             onClick={() => {
-              console.log(team.id, "mappedID")
+              console.log(team.id, "mappedID");
               setTeamId(team.id);
               setTeamName(team.name);
             }}

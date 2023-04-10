@@ -1,5 +1,9 @@
 import { Typography } from "@mui/material";
-import { SelectedTeamHeaderS, SelectionMessageS, WelcomeMessageS } from "../styles/EmployeeDisplayHeaders.style";
+import {
+  SelectedTeamHeaderS,
+  SelectionMessageS,
+  WelcomeMessageS,
+} from "../styles/EmployeeDisplayHeaders.style";
 
 interface SelectedTeamI {
   teamName: string;
@@ -7,11 +11,7 @@ interface SelectedTeamI {
 
 export const WelcomeMessageHeader = () => (
   <>
-    <Typography
-      variant="h3"
-      component="h3"
-      sx={WelcomeMessageS}
-    >
+    <Typography variant="h3" component="h3" sx={WelcomeMessageS}>
       Welcome to Teams
     </Typography>
     <Typography

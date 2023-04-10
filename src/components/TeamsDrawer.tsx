@@ -3,12 +3,12 @@ import { ReactComponent as Logo } from "../assets/alveno-logo.svg";
 import { TeamsButtons } from "./TeamsButtons";
 import { TemporaryDrawer } from "./TemporaryDrawer";
 import { PermanentDrawer } from "./PermanentDrawer";
-
+import { APP_BAR_HEIGHT } from "../constants/constants";
 
 interface TeamsDrawerI {
   mobileOpen: boolean;
   handleDrawerToggle: () => void;
-  setTeamId: (value: string ) => void;
+  setTeamId: (value: string) => void;
   setTeamName: (value: string | null) => void;
   teamName: string | null;
 }
@@ -20,11 +20,10 @@ export const TeamsDrawer = ({
   setTeamId,
   setTeamName,
 }: TeamsDrawerI) => {
-
   //misto height 100px doplnit height podle vysky appbaru
   const drawerButtons = (
     <>
-      <Toolbar sx={{ height: "100px" }}> 
+      <Toolbar sx={{ height: APP_BAR_HEIGHT }}>
         <Logo />
       </Toolbar>
       <Divider />
@@ -43,9 +42,7 @@ export const TeamsDrawer = ({
         handleDrawerToggle={handleDrawerToggle}
         drawerButtons={drawerButtons}
       />
-      <TemporaryDrawer
-        drawerButtons={drawerButtons}
-      />
+      <TemporaryDrawer drawerButtons={drawerButtons} />
     </>
   );
 };

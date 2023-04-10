@@ -6,11 +6,7 @@ interface TemporaryDrawerI {
 }
 
 export const TemporaryDrawer = ({ drawerButtons }: TemporaryDrawerI) => (
-  <Drawer
-    variant="permanent"
-    sx={TemporaryDrawerS}
-    open
-  >
+  <Drawer variant="permanent" sx={TemporaryDrawerS} open>
     {drawerButtons}
   </Drawer>
 );

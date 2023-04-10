@@ -48,26 +48,3 @@ export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
     </>
   );
 };
-
-/*
-const getSelectedTeamEmployees = (employees: EmployeesRowT, teamId: string) => {
-  const selectedTeamEmployees:EmployeesRowT = [];
-  employees.map((employee) => {
-    if (teamId === employee.team) {
-      selectedTeamEmployees.push(employee);
-    }
-  })
-  return selectedTeamEmployees;
-};
-
-const getEndDateEmployees = (employees: EmployeesRowT, teamId: string) => {
-  const selectedTeamEmployees = getSelectedTeamEmployees(employees, teamId)
-  const endDateEmployees:EmployeesRowT = []
-  selectedTeamEmployees.map((employee) => {
-    if (employee.endDate) {
-      endDateEmployees.push(employee);
-    }
-  })
-  return endDateEmployees;
-}
-*/

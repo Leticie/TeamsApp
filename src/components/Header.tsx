@@ -17,10 +17,7 @@ export const Header = ({ handleDrawerToggle }: HeaderI) => (
       >
         <MenuIcon />
       </IconButton>
-      <Typography
-        variant="h2"
-        sx={TypographyHeaderS}
-      >
+      <Typography variant="h2" sx={TypographyHeaderS}>
         Teams
       </Typography>
       <WorkspacesIcon

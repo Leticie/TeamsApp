@@ -17,12 +17,10 @@ export const AppContent = () => {
   const handleTeamName = (teamName: string | null) => setTeamName(teamName);
   const handleTeamId = (teamId: string) => setTeamId(teamId);
 
-  console.log(teamId)
-
   return (
     <Box sx={{ display: "flex" }}>
       <Header handleDrawerToggle={handleDrawerToggle} />
-      <Box sx={{ width: { sm: DRAWER_WIDTH }, flexShrink: { sm: 0 } }}>
+      <Box sx={{ width: { sm: DRAWER_WIDTH } }}>
         <TeamsDrawer
           handleDrawerToggle={handleDrawerToggle}
           mobileOpen={mobileOpen}

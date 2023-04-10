@@ -8,6 +8,6 @@ export const CardEmployeeActiveS = {
 export const CardEmployeePassiveS = {
   padding: 4,
   bgcolor: "grey",
-  width: "200px",
-  heigth: "200px",
+  minWidth: "200px",
+  minHeigth: "200px",
 };

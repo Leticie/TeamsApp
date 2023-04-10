@@ -1,4 +1,5 @@
 export const DRAWER_WIDTH = 240;
+export const APP_BAR_HEIGHT = 100;
 
 export const TEAMS_URL =
   "https://nktebdhspzvpwguqcksn.supabase.co/rest/v1/teams?select=*";

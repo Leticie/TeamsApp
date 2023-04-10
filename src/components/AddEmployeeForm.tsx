@@ -33,8 +33,6 @@ export default function AddEmployeeForm({ teamId }: AddEmployeeFormI) {
     }));
   };
 
-
-
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     axios
@@ -43,7 +41,7 @@ export default function AddEmployeeForm({ teamId }: AddEmployeeFormI) {
         { ...data, team: teamId }, // add selected team to request
         CONFIG
       )
-      .catch((err) => console.error(err))
+      .catch((err) => console.error(err));
     setOpen(false);
   };
 
@@ -58,7 +56,6 @@ export default function AddEmployeeForm({ teamId }: AddEmployeeFormI) {
           <AddIcon />
         </Fab>
       </Container>
-
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add new member</DialogTitle>
         <form onSubmit={handleSubmit}>
