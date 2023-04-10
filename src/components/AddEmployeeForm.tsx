@@ -26,7 +26,7 @@ export default function AddEmployeeForm({ teamId }: AddEmployeeFormI) {
   const handleClickOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleInput = (event: any) => {
+  const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setData((prevData) => ({
       ...prevData,
       [event.target.name]: event.target.value,
@@ -35,7 +35,7 @@ export default function AddEmployeeForm({ teamId }: AddEmployeeFormI) {
 
 
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     axios
       .post(
