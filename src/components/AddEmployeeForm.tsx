@@ -9,6 +9,7 @@ import { Container, Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 import axios from "axios";
+import { ADD_EMPLOYEES_URL } from "../constants/constants";
 
 interface AddEmployeeFormI {
   teamId: string;
@@ -42,12 +43,11 @@ export default function AddEmployeeForm({ teamId }: AddEmployeeFormI) {
     event.preventDefault();
     axios
       .post(
-        "https://nktebdhspzvpwguqcksn.supabase.co/rest/v1/employees",
+        ADD_EMPLOYEES_URL,
         { ...data, team: teamId }, // add selected team to request
         config
       )
-      .then((response) => console.log(response))
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err))
     setOpen(false);
   };
 
