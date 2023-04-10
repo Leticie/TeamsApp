@@ -2,7 +2,7 @@ import { ButtonGroup, Button } from "@mui/material";
 import axios, { AxiosResponse } from "axios";
 import { TeamsRowT } from "../types/apiTypes";
 import { useState, useEffect } from "react";
-import { TEAMS_URL } from "../constants/constants";
+import { CONFIG, TEAMS_URL } from "../constants/constants";
 import { TeamsButtonS } from "../styles/TeamsButton.styles";
 
 interface TeamsButtonsI {
@@ -18,15 +18,9 @@ export const TeamsButtons = ({
 }: TeamsButtonsI) => {
   const [teams, setTeams] = useState<TeamsRowT>();
 
-  const config = {
-    headers: {
-      apikey: import.meta.env.VITE_API_KEY,
-    },
-  };
-
   useEffect(() => {
     axios
-      .get(TEAMS_URL, config)
+      .get(TEAMS_URL, CONFIG)
       .then((response: AxiosResponse<TeamsRowT>) => setTeams(response.data))
       .catch(err => console.error(err))
   }, []);

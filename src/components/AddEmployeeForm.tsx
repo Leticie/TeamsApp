@@ -9,7 +9,7 @@ import { Container, Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 import axios from "axios";
-import { ADD_EMPLOYEES_URL } from "../constants/constants";
+import { ADD_EMPLOYEES_URL, CONFIG } from "../constants/constants";
 
 interface AddEmployeeFormI {
   teamId: string;
@@ -33,11 +33,7 @@ export default function AddEmployeeForm({ teamId }: AddEmployeeFormI) {
     }));
   };
 
-  const config = {
-    headers: {
-      apikey: import.meta.env.VITE_API_KEY,
-    },
-  };
+
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
@@ -45,13 +41,11 @@ export default function AddEmployeeForm({ teamId }: AddEmployeeFormI) {
       .post(
         ADD_EMPLOYEES_URL,
         { ...data, team: teamId }, // add selected team to request
-        config
+        CONFIG
       )
       .catch((err) => console.error(err))
     setOpen(false);
   };
-
-  console.log(data);
 
   return (
     <>
