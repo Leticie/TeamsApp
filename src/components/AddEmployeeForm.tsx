@@ -8,16 +8,51 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { Container, Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
-import axios from "axios";
-import { ADD_EMPLOYEES_URL, CONFIG } from "../constants/constants";
+import axios, { AxiosResponse } from "axios";
+import {
+  ADD_EMPLOYEES_URL,
+  CONFIG,
+  EMPLOYEES_URL,
+} from "../constants/constants";
+import { EmployeesRowT } from "../types/apiTypes";
 
 interface AddEmployeeFormI {
   teamId: string;
+  setEmployees: React.Dispatch<React.SetStateAction<EmployeesRowT | undefined>>;
+}
+interface dataI {
+  name: string;
+  surname: string;
+  position: string;
 }
 
-export default function AddEmployeeForm({ teamId }: AddEmployeeFormI) {
+const addEmployee = async (
+  setEmployees: React.Dispatch<React.SetStateAction<EmployeesRowT | undefined>>,
+  data: dataI,
+  teamId: string
+) => {
+  await axios
+    .post(
+      ADD_EMPLOYEES_URL,
+      { ...data, team: teamId }, // add selected team to request
+      CONFIG
+    )
+    .catch((err) => console.error(err));
+
+  await axios
+    .get(EMPLOYEES_URL, CONFIG)
+    .then((response: AxiosResponse<EmployeesRowT>) =>
+      setEmployees(response.data)
+    )
+    .catch((err) => console.error(err));
+};
+
+export default function AddEmployeeForm({
+  teamId,
+  setEmployees,
+}: AddEmployeeFormI) {
   const [open, setOpen] = useState<boolean>(false);
-  const [data, setData] = useState({
+  const [data, setData] = useState<dataI>({
     name: "",
     surname: "",
     position: "",
@@ -35,13 +70,7 @@ export default function AddEmployeeForm({ teamId }: AddEmployeeFormI) {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    axios
-      .post(
-        ADD_EMPLOYEES_URL,
-        { ...data, team: teamId }, // add selected team to request
-        CONFIG
-      )
-      .catch((err) => console.error(err));
+    addEmployee(setEmployees, data, teamId);
     setOpen(false);
   };
 

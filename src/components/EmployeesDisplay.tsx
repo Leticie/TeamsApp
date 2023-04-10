@@ -44,7 +44,7 @@ export const EmployeesDisplay = ({ teamId, teamName }: EmployeesDisplayI) => {
             }
           })}
       </Grid>
-      <AddEmployeeForm teamId={teamId} />
+      <AddEmployeeForm teamId={teamId} setEmployees={setEmployees} />
     </>
   );
 };
