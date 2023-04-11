@@ -2,14 +2,14 @@
   "name": "teamsapp",
   "private": true,
   "version": "0.0.0",
-  "homepage": "http://Leticie.github.io/Portfolio/teams",
+  "homepage": "https://leticie.github.io/TeamsApp/",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build -e teamsapp"
+    "deploy": "gh-pages -d dist -e teamsapp" 
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
